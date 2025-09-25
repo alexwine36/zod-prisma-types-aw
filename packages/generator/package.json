@@ -1,59 +1,49 @@
 {
-  "name": "zod-prisma-types",
-  "version": "3.2.4",
-  "description": "Generates zod schemas from Prisma models with advanced validation",
-  "author": "Chris Hörmann",
-  "license": "MIT",
-  "main": "dist/generator.js",
-  "types": "dist/generator.d.ts",
-  "keywords": [
-    "zod",
-    "prisma",
-    "typescript",
-    "schema",
-    "types",
-    "generator",
-    "validation"
-  ],
-  "files": [
-    "dist"
-  ],
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/chrishoermann/zod-prisma-types.git"
-  },
-  "bin": {
-    "zod-prisma-types": "dist/bin.js"
-  },
-  "scripts": {
-    "lint": "eslint --ext ts,tsx,js,jsx --fix .",
-    "test": "vitest",
-    "build": "tsc",
-    "format": "prettier --write \"**/*.{ts,tsx,md,json}\""
-  },
-  "devDependencies": {
-    "@prisma/internals": "^6.6.0",
-    "@types/lodash": "^4.17.16",
-    "@typescript-eslint/eslint-plugin": "^8.29.1",
-    "@typescript-eslint/parser": "^8.29.1",
-    "eslint": "^8.57.1",
-    "eslint-config-prettier": "^9.1.0",
-    "eslint-config-universe": "^14.2.0",
-    "eslint-plugin-import": "^2.31.0",
-    "eslint-plugin-prettier": "^5.2.6",
-    "prettier": "^3.5.3",
-    "typescript": "^5.8.3",
-    "vitest": "^3.1.1"
-  },
-  "dependencies": {
-    "@prisma/dmmf": "^6.6.0",
-    "@prisma/generator-helper": "^6.6.0",
-    "code-block-writer": "^13.0.3",
-    "lodash": "^4.17.21",
-    "zod": "3.24.2"
-  },
-  "peerDependencies": {
-    "@prisma/client": "^4.x.x || ^5.x.x || ^6.x.x",
-    "prisma": "^4.x.x || ^5.x.x || ^6.x.x"
-  }
+	"name": "zod-prisma-types",
+	"version": "3.2.4",
+	"description": "Generates zod schemas from Prisma models with advanced validation",
+	"author": "Chris Hörmann",
+	"license": "MIT",
+	"main": "dist/generator.js",
+	"types": "dist/generator.d.ts",
+	"keywords": [
+		"zod",
+		"prisma",
+		"typescript",
+		"schema",
+		"types",
+		"generator",
+		"validation"
+	],
+	"files": [
+		"dist"
+	],
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/chrishoermann/zod-prisma-types.git"
+	},
+	"bin": {
+		"zod-prisma-types": "dist/bin.js"
+	},
+	"scripts": {
+		"test": "vitest",
+		"build": "tsc"
+	},
+	"devDependencies": {
+		"@prisma/internals": "^6.6.0",
+		"@types/lodash": "^4.17.16",
+		"typescript": "^5.8.3",
+		"vitest": "^3.1.1"
+	},
+	"dependencies": {
+		"@prisma/dmmf": "^6.6.0",
+		"@prisma/generator-helper": "^6.6.0",
+		"code-block-writer": "^13.0.3",
+		"lodash": "^4.17.21",
+		"zod": "3.24.2"
+	},
+	"peerDependencies": {
+		"@prisma/client": "^4.x.x || ^5.x.x || ^6.x.x",
+		"prisma": "^4.x.x || ^5.x.x || ^6.x.x"
+	}
 }
