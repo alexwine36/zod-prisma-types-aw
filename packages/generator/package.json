@@ -27,7 +27,8 @@
 	},
 	"scripts": {
 		"test": "vitest run",
-		"build": "tsc"
+		"build": "tsc",
+		"typecheck": "tsc --noEmit"
 	},
 	"devDependencies": {
 		"@prisma/internals": "^6.16.2",

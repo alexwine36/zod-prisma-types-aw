@@ -10,6 +10,7 @@
 		"test": {
 			"dependsOn": ["gen:prisma"]
 		},
-		"clean": {}
+		"clean": {},
+		"typecheck": {}
 	}
 }

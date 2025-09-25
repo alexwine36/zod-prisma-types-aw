@@ -10,7 +10,8 @@
 		"lint:ci": "biome check --diagnostic-level=error",
 		"clean": "turbo run clean",
 		"change": "changeset",
-		"static": "turbo run lint:ci test",
+		"static": "turbo run lint:ci test typecheck",
+		"typecheck": "turbo run typecheck",
 		"format": "biome check --write --diagnostic-level=error",
 		"release": "pnpm build && pnpm changeset publish"
 	},

@@ -1,3 +1,4 @@
+/** biome-ignore-all lint/suspicious/noExportsInTest: Fine for tests */
 import Decimal from "decimal.js";
 import { afterAll, beforeAll, expect, it } from "vitest";
 import { Prisma } from "../prisma/generated/client";
