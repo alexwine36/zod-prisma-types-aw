@@ -1,3 +1,4 @@
+/** biome-ignore-all lint/suspicious/noExplicitAny: Fine for tests */
 import { Decimal } from "decimal.js";
 import { z } from "zod";
 import { Prisma } from "../../prisma/generated/client";

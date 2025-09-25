@@ -1,3 +1,4 @@
+/** biome-ignore-all lint/suspicious/noExportsInTest: Fine for tests */
 import { expect, it } from "vitest";
 
 import { getStringVariants } from "../getStringVariants";

@@ -1,3 +1,3 @@
-export const myFunction = (value: any) => {
+export const myFunction = (value: unknown) => {
 	return !!value;
 };

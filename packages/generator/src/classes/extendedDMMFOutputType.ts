@@ -118,7 +118,7 @@ export class ExtendedDMMFOutputType
 		const imports = new Set<string>();
 		const { outputTypePath } = this.generatorConfig;
 
-		this.fields.forEach((field) => {
+		this.fields.map((field) => {
 			if (field.writeSelectFindManyField) {
 				return imports.add(
 					`import { ${field.outputType.type}FindManyArgsSchema } from "../${outputTypePath}/${field.outputType.type}FindManyArgsSchema"`,
@@ -141,7 +141,7 @@ export class ExtendedDMMFOutputType
 		const imports = new Set<string>();
 		const { outputTypePath } = this.generatorConfig;
 
-		this.fields.forEach((field) => {
+		this.fields.map((field) => {
 			if (field.writeIncludeFindManyField) {
 				return imports.add(
 					`import { ${field.outputType.type}FindManyArgsSchema } from "../${outputTypePath}/${field.outputType.type}FindManyArgsSchema"`,

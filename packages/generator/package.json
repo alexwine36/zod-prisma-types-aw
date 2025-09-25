@@ -2,7 +2,7 @@
 	"name": "zod-prisma-types-aw",
 	"version": "3.2.4",
 	"description": "Generates zod schemas from Prisma models with advanced validation",
-	"author": "Chris Hörmann",
+	"author": "Alex Wine",
 	"license": "MIT",
 	"main": "dist/generator.js",
 	"types": "dist/generator.d.ts",
@@ -20,7 +20,7 @@
 	],
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/chrishoermann/zod-prisma-types.git"
+		"url": "https://github.com/alexwine36/zod-prisma-types-aw"
 	},
 	"bin": {
 		"zod-prisma-types-aw": "dist/bin.js"

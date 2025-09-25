@@ -4,7 +4,8 @@
 		"build": {
 			"outputs": ["dist/**"]
 		},
-		"lint": {},
+		"//#lint": {},
+		"//#lint:ci": {},
 		"gen:prisma": {},
 		"test": {
 			"dependsOn": ["gen:prisma"]
