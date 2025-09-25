@@ -14,5 +14,5 @@ jobs:
           github_token: ${{ secrets.github_token }}
           reporter: github-pr-review
           fail_level: error
-          level: info
+        #   level: info
           filter_mode: nofilter
