@@ -1,5 +1,11 @@
 # zod-prisma-types-aw
 
+## 3.5.0
+
+### Minor Changes
+
+- 9d100f7: Removed deprecated .strict() from prisma generator
+
 ## 3.4.0
 
 ### Minor Changes
