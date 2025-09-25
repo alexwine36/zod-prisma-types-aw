@@ -9,9 +9,9 @@ import {
 	isValidDecimalInput,
 } from "../prisma/generated/zod";
 import { DECIMAL_STRING_REGEX } from "../prisma/generated/zod/inputTypeSchemas/isValidDecimalInput";
+import { PORT } from "../utils/consts";
 import { client } from "./trpc/client";
 import { getServer } from "./trpc/server";
-import { PORT } from "../utils/consts";
 
 // const prismaClient = new PrismaClient();
 
