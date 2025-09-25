@@ -283,7 +283,7 @@ export const OBJECT_VALIDATOR_REGEX_MAP: ValidatorMap<ZodSharedValidatorKeys> =
 /////////////////////////////////////////////////
 
 export class ExtendedDMMFFieldValidatorMap extends ExtendedDMMFFieldValidatorCustomErrors {
-	 _validatorMap: ValidatorFunctionMap = {
+	_validatorMap: ValidatorFunctionMap = {
 		string: (options) =>
 			this._validateRegexInMap(STRING_VALIDATOR_REGEX_MAP, options),
 		number: (options) =>
@@ -327,7 +327,7 @@ export class ExtendedDMMFFieldValidatorMap extends ExtendedDMMFFieldValidatorCus
 	//  VALIDATE PATTERN IN MAP
 	// ----------------------------------------------
 
-	 _validatePatternInMap(opts: ScalarValidatorFnOpts) {
+	_validatePatternInMap(opts: ScalarValidatorFnOpts) {
 		if (this._validatorType) {
 			return this._validatorMap[this._validatorType](opts);
 		}
@@ -340,7 +340,7 @@ export class ExtendedDMMFFieldValidatorMap extends ExtendedDMMFFieldValidatorCus
 	//  GET VALIDATOR KEY FROM PATTERN
 	// ----------------------------------------------
 
-	 _getValidatorKeyFromPattern(pattern: string) {
+	_getValidatorKeyFromPattern(pattern: string) {
 		const key = pattern.match(VALIDATOR_KEY_REGEX)?.groups?.["validatorKey"];
 
 		if (key) {

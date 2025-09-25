@@ -64,7 +64,7 @@ export const PRISMA_SCALAR_TO_VALIDATOR_TYPE_MAP: Record<
 /////////////////////////////////////////////////
 
 export class ExtendedDMMFFieldValidatorType extends ExtendedDMMFFieldValidatorMatch {
-	 _validatorType?: ZodValidatorType;
+	_validatorType?: ZodValidatorType;
 
 	constructor(
 		field: DMMF.Field,

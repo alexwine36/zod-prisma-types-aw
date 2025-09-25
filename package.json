@@ -4,6 +4,7 @@
 	"description": "",
 	"main": "index.js",
 	"scripts": {
+		"build": "turbo run build",
 		"test": "turbo run test",
 		"lint": "biome check --write --unsafe --log-level=error",
 		"lint:ci": "biome lint --log-level=error"

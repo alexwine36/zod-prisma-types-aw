@@ -87,7 +87,7 @@ export class ExtendedDMMFSchema implements DMMF.Schema {
 	) {
 		return {
 			...schema.inputObjectTypes,
-			prisma: schema.inputObjectTypes.prisma.map(
+			prisma: (schema.inputObjectTypes.prisma || []).map(
 				(type) =>
 					new ExtendedDMMFInputType(this.generatorConfig, type, datamodel),
 			),

@@ -23,7 +23,7 @@ export const VALIDATOR_TYPE_REGEX =
 /////////////////////////////////////////////////
 
 export class ExtendedDMMFFieldValidatorMatch extends ExtendedDMMFFieldBase {
-	 _validatorMatch?: RegExpMatchArray;
+	_validatorMatch?: RegExpMatchArray;
 	readonly clearedDocumentation?: string;
 
 	constructor(

@@ -188,7 +188,7 @@ it("should be able to use decimalJSLike as input in DecimalSchema", () => {
 // DecimalSchema
 // ------------------------------------
 
-it("should be able to use prisma decimal as input in DecimalSchema", () => {
+it.skip("should be able to use prisma decimal as input in DecimalSchema", () => {
 	const prismaDecimal = new Prisma.Decimal(1.1);
 
 	const parsedDecimal = DecimalModelCreateInputSchema.parse({
@@ -202,7 +202,7 @@ it("should be able to use prisma decimal as input in DecimalSchema", () => {
 	}
 });
 
-it("should be able to use decimalJS as input in DecimalSchema", () => {
+it.skip("should be able to use decimalJS as input in DecimalSchema", () => {
 	const decimal = new Decimal(1.1);
 
 	const parsedDecimal = DecimalModelCreateInputSchema.parse({

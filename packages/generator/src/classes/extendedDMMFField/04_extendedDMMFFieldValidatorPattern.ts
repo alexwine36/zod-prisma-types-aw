@@ -9,7 +9,7 @@ import { ExtendedDMMFFieldValidatorType } from "./03_extendedDMMFFieldValidatorT
 /////////////////////////////////////////////////
 
 export class ExtendedDMMFFieldValidatorPattern extends ExtendedDMMFFieldValidatorType {
-	 _validatorPattern?: string;
+	_validatorPattern?: string;
 	protected _validatorList?: string[];
 
 	constructor(

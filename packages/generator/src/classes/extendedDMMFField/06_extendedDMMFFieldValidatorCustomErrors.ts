@@ -8,7 +8,7 @@ import { ExtendedDMMFFieldDefaultValidators } from "./05_extendedDMMFFieldDefaul
 /////////////////////////////////////////////////
 
 export class ExtendedDMMFFieldValidatorCustomErrors extends ExtendedDMMFFieldDefaultValidators {
-	 _validatorCustomError?: string;
+	_validatorCustomError?: string;
 	readonly zodCustomErrors?: string;
 
 	constructor(
