@@ -18,6 +18,7 @@
 	},
 	"packageManager": "pnpm@9.14.2",
 	"devDependencies": {
-		"@biomejs/biome": "2.2.4"
+		"@biomejs/biome": "2.2.4",
+		"@changesets/cli": "^2.29.7"
 	}
 }

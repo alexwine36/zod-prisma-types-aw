@@ -130,7 +130,7 @@ Add the following code to your `prisma.schema` file:
 
 ```prisma
 generator zod {
-  provider       = "zod-prisma-types"
+  provider       = "zod-prisma-types-aw"
 }
 ```
 
@@ -150,7 +150,7 @@ import { mySchema } from '/prisma/generated/zod'; // All schemas are here by def
 
 ```prisma
 generator zod {
-  provider       = "npx zod-prisma-types"
+  provider       = "npx zod-prisma-types-aw"
 }
 ```
 
@@ -796,7 +796,7 @@ This may look a bit cryptic so here is an example:
 
 ```prisma
 generator zod {
-  provider       = "zod-prisma-types"
+  provider       = "zod-prisma-types-aw"
   output         = "./zod"
 }
 

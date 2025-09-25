@@ -23,7 +23,7 @@
 		"url": "https://github.com/chrishoermann/zod-prisma-types.git"
 	},
 	"bin": {
-		"zod-prisma-types": "dist/bin.js"
+		"zod-prisma-types-aw": "dist/bin.js"
 	},
 	"scripts": {
 		"test": "vitest run",
