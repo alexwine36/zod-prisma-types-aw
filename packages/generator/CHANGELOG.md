@@ -1,5 +1,11 @@
 # zod-prisma-types-aw
 
+## 3.3.1
+
+### Patch Changes
+
+- bb7aaf6: Updated DecimalJsLikeSchema type
+
 ## 3.3.0
 
 ### Minor Changes
