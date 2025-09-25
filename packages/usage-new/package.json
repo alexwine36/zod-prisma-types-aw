@@ -9,6 +9,7 @@
 		"gen:prisma": "prisma generate --schema prisma/schema",
 		"run:dev": "ts-node-dev app/client.ts",
 		"tsc": "tsc",
+		"typecheck": "tsc --noEmit",
 		"clean": "git clean -xdf node_modules prisma/generated .turbo"
 	},
 	"keywords": [],
