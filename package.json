@@ -1,5 +1,5 @@
 {
-	"name": "zod-prisma-types-monorepo",
+	"name": "zod-prisma-types-aw-monorepo",
 	"version": "1.0.0",
 	"description": "",
 	"main": "index.js",
@@ -7,13 +7,14 @@
 		"build": "turbo run build",
 		"test": "turbo run test",
 		"lint": "biome check --write --unsafe --log-level=error",
-		"lint:ci": "biome lint --log-level=error"
+		"lint:ci": "biome lint --log-level=error",
+		"clean": "turbo run clean"
 	},
 	"keywords": [],
 	"author": "",
 	"license": "ISC",
 	"dependencies": {
-		"turbo": "^2.5.0"
+		"turbo": "^2.5.8"
 	},
 	"packageManager": "pnpm@9.14.2",
 	"devDependencies": {
