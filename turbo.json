@@ -9,7 +9,7 @@
 		"//#lint:ci": {},
 		"gen:prisma": {},
 		"test": {
-			"dependsOn": ["gen:prisma"]
+			"dependsOn": ["^build", "gen:prisma"]
 		},
 		"clean": {},
 		"typecheck": {}

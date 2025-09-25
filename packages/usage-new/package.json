@@ -8,7 +8,7 @@
 		"gen:prisma": "prisma generate --schema prisma/schema",
 		"run:dev": "ts-node-dev app/client.ts",
 		"tsc": "tsc",
-		"clean": "git clean -xdf node_modules prisma/generated"
+		"clean": "git clean -xdf node_modules prisma/generated .turbo"
 	},
 	"keywords": [],
 	"type": "module",

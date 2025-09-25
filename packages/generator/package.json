@@ -28,6 +28,7 @@
 	"scripts": {
 		"test": "vitest run",
 		"build": "tsc",
+		"clean": "git clean -xdf node_modules dist .turbo",
 		"typecheck": "tsc --noEmit"
 	},
 	"devDependencies": {
