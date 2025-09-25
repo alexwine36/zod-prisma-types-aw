@@ -1,11 +1,11 @@
-import { it, expect } from 'vitest';
+import { expect, it } from "vitest";
 
-import { removeUseContent } from '../removeUseContent';
+import { removeUseContent } from "../removeUseContent";
 
-it('should remove .use() content from a string', () => {
-  const inputString =
-    '.use(z.object({contents: z.array(z.object({locale: z.string(), content: z.string()}))})).array()...';
-  const resultString = removeUseContent(inputString);
+it("should remove .use() content from a string", () => {
+	const inputString =
+		".use(z.object({contents: z.array(z.object({locale: z.string(), content: z.string()}))})).array()...";
+	const resultString = removeUseContent(inputString);
 
-  expect(resultString).toBe('.use().array()...');
+	expect(resultString).toBe(".use().array()...");
 });

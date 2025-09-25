@@ -1,41 +1,40 @@
-import type DMMF from '@prisma/dmmf';
-
-import { ExtendedDMMFFieldValidatorMap } from './07_extendedDMMFFieldValidatorMap';
-import { GeneratorConfig } from '../../schemas';
+import type DMMF from "@prisma/dmmf";
+import type { GeneratorConfig } from "../../schemas";
+import { ExtendedDMMFFieldValidatorMap } from "./07_extendedDMMFFieldValidatorMap";
 
 /////////////////////////////////////////////////
 // CLASS
 /////////////////////////////////////////////////
 
 export class ExtendedDMMFFieldValidatorString extends ExtendedDMMFFieldValidatorMap {
-  readonly zodValidatorString?: string;
+	readonly zodValidatorString?: string;
 
-  constructor(
-    field: DMMF.Field,
-    generatorConfig: GeneratorConfig,
-    modelName: string,
-  ) {
-    super(field, generatorConfig, modelName);
+	constructor(
+		field: DMMF.Field,
+		generatorConfig: GeneratorConfig,
+		modelName: string,
+	) {
+		super(field, generatorConfig, modelName);
 
-    this.zodValidatorString = this._getZodValidatorString();
-  }
+		this.zodValidatorString = this._getZodValidatorString();
+	}
 
-  // GET VALIDATOR STRING
-  // ----------------------------------------------
+	// GET VALIDATOR STRING
+	// ----------------------------------------------
 
-  private _getZodValidatorString() {
-    if (!this._validatorType || this._validatorType === 'custom')
-      return this._defaultValidatorString;
+	private _getZodValidatorString() {
+		if (!this._validatorType || this._validatorType === "custom")
+			return this._defaultValidatorString;
 
-    return this._validatorIsValid()
-      ? this._getZodValidatorStringWithoutArray()
-      : this.zodValidatorString;
-  }
+		return this._validatorIsValid()
+			? this._getZodValidatorStringWithoutArray()
+			: this.zodValidatorString;
+	}
 
-  // HELPER
-  // ----------------------------------------------
+	// HELPER
+	// ----------------------------------------------
 
-  private _getZodValidatorStringWithoutArray() {
-    return this._getZodValidatorListWithoutArray()?.join('');
-  }
+	private _getZodValidatorStringWithoutArray() {
+		return this._getZodValidatorListWithoutArray()?.join("");
+	}
 }

@@ -7,29 +7,29 @@ import { loadDMMF } from "../../utils/loadDMMF";
 
 // biome-ignore lint/suspicious/noExportsInTest: <explanation>
 export const DEFAULT_GENERATOR_CONFIG: GeneratorConfig = {
-  useMultipleFiles: false,
-  createInputTypes: true,
-  createModelTypes: true,
-  createOptionalDefaultValuesTypes: false,
-  createRelationValuesTypes: false,
-  createPartialTypes: false,
-  addIncludeType: true,
-  addSelectType: true,
-  addInputTypeValidation: true,
-  useDefaultValidators: true,
-  prismaClientPath: "@prisma/client",
-  coerceDate: true,
-  writeNullishInModelTypes: false,
-  isMongoDb: false,
-  validateWhereUniqueInput: true,
-  inputTypePath: "inputTypeSchemas",
-  outputTypePath: "outputTypeSchemas",
-  writeBarrelFiles: true,
-  decimalJSInstalled: false,
-  useTypeAssertions: false,
-  useExactOptionalPropertyTypes: false,
-  isPrismaClientGenerator: false,
-  prismaLibraryPath: ""
+	useMultipleFiles: false,
+	createInputTypes: true,
+	createModelTypes: true,
+	createOptionalDefaultValuesTypes: false,
+	createRelationValuesTypes: false,
+	createPartialTypes: false,
+	addIncludeType: true,
+	addSelectType: true,
+	addInputTypeValidation: true,
+	useDefaultValidators: true,
+	prismaClientPath: "@prisma/client",
+	coerceDate: true,
+	writeNullishInModelTypes: false,
+	isMongoDb: false,
+	validateWhereUniqueInput: true,
+	inputTypePath: "inputTypeSchemas",
+	outputTypePath: "outputTypeSchemas",
+	writeBarrelFiles: true,
+	decimalJSInstalled: false,
+	useTypeAssertions: false,
+	useExactOptionalPropertyTypes: false,
+	isPrismaClientGenerator: false,
+	prismaLibraryPath: "@prisma/client/runtime/library",
 };
 
 describe("testSimpleModelNoValidators", async () => {
@@ -64,8 +64,8 @@ describe("testSimpleModelNoValidators", async () => {
 		expect(fields[0].isJsonType).toBe(false);
 		expect(fields[0].isBytesType).toBe(false);
 		expect(fields[0].isDecimalType).toBe(false);
-		expect(fields[0]?.["_modelName"]).toBe("MyPrismaScalarsType");
-		expect(fields[0]?.["_errorLocation"]).toBe(
+		expect(fields[0]?._modelName).toBe("MyPrismaScalarsType");
+		expect(fields[0]?._errorLocation).toBe(
 			"[Error Location]: Model: 'MyPrismaScalarsType', Field: 'id'.",
 		);
 		expect(fields[0].zodCustomErrors).toBe(
@@ -103,8 +103,8 @@ describe("testSimpleModelNoValidators", async () => {
 		expect(fields[1].isJsonType).toBe(false);
 		expect(fields[1].isBytesType).toBe(false);
 		expect(fields[1].isDecimalType).toBe(false);
-		expect(fields[1]?.["_modelName"]).toBe("MyPrismaScalarsType");
-		expect(fields[1]?.["_errorLocation"]).toBe(
+		expect(fields[1]?._modelName).toBe("MyPrismaScalarsType");
+		expect(fields[1]?._errorLocation).toBe(
 			"[Error Location]: Model: 'MyPrismaScalarsType', Field: 'string'.",
 		);
 		expect(fields[1].zodCustomErrors).toBeUndefined();
@@ -142,8 +142,8 @@ describe("testSimpleModelNoValidators", async () => {
 		expect(fields[2].isJsonType).toBe(false);
 		expect(fields[2].isBytesType).toBe(false);
 		expect(fields[2].isDecimalType).toBe(false);
-		expect(fields[2]?.["_modelName"]).toBe("MyPrismaScalarsType");
-		expect(fields[2]?.["_errorLocation"]).toBe(
+		expect(fields[2]?._modelName).toBe("MyPrismaScalarsType");
+		expect(fields[2]?._errorLocation).toBe(
 			"[Error Location]: Model: 'MyPrismaScalarsType', Field: 'bic'.",
 		);
 		expect(fields[2].zodCustomErrors).toBeUndefined();
@@ -181,8 +181,8 @@ describe("testSimpleModelNoValidators", async () => {
 		expect(fields[3].isJsonType).toBe(false);
 		expect(fields[3].isBytesType).toBe(false);
 		expect(fields[3].isDecimalType).toBe(false);
-		expect(fields[3]?.["_modelName"]).toBe("MyPrismaScalarsType");
-		expect(fields[3]?.["_errorLocation"]).toBe(
+		expect(fields[3]?._modelName).toBe("MyPrismaScalarsType");
+		expect(fields[3]?._errorLocation).toBe(
 			"[Error Location]: Model: 'MyPrismaScalarsType', Field: 'float'.",
 		);
 		expect(fields[3].zodCustomErrors).toBeUndefined();
@@ -218,8 +218,8 @@ describe("testSimpleModelNoValidators", async () => {
 		expect(fields[4].isJsonType).toBe(false);
 		expect(fields[4].isBytesType).toBe(false);
 		expect(fields[4].isDecimalType).toBe(true);
-		expect(fields[4]?.["_modelName"]).toBe("MyPrismaScalarsType");
-		expect(fields[4]?.["_errorLocation"]).toBe(
+		expect(fields[4]?._modelName).toBe("MyPrismaScalarsType");
+		expect(fields[4]?._errorLocation).toBe(
 			"[Error Location]: Model: 'MyPrismaScalarsType', Field: 'decimal'.",
 		);
 		expect(fields[4].zodCustomErrors).toBeUndefined();
@@ -255,8 +255,8 @@ describe("testSimpleModelNoValidators", async () => {
 		expect(fields[5].isJsonType).toBe(false);
 		expect(fields[5].isBytesType).toBe(false);
 		expect(fields[5].isDecimalType).toBe(false);
-		expect(fields[5]?.["_modelName"]).toBe("MyPrismaScalarsType");
-		expect(fields[5]?.["_errorLocation"]).toBe(
+		expect(fields[5]?._modelName).toBe("MyPrismaScalarsType");
+		expect(fields[5]?._errorLocation).toBe(
 			"[Error Location]: Model: 'MyPrismaScalarsType', Field: 'date'.",
 		);
 		expect(fields[5].zodCustomErrors).toBeUndefined();
@@ -292,8 +292,8 @@ describe("testSimpleModelNoValidators", async () => {
 		expect(fields[6].isJsonType).toBe(false);
 		expect(fields[6].isBytesType).toBe(false);
 		expect(fields[6].isDecimalType).toBe(false);
-		expect(fields[6]?.["_modelName"]).toBe("MyPrismaScalarsType");
-		expect(fields[6]?.["_errorLocation"]).toBe(
+		expect(fields[6]?._modelName).toBe("MyPrismaScalarsType");
+		expect(fields[6]?._errorLocation).toBe(
 			"[Error Location]: Model: 'MyPrismaScalarsType', Field: 'bigInt'.",
 		);
 		expect(fields[6].zodCustomErrors).toBeUndefined();
@@ -327,8 +327,8 @@ describe("testSimpleModelNoValidators", async () => {
 		expect(fields[7].isJsonType).toBe(true);
 		expect(fields[7].isBytesType).toBe(false);
 		expect(fields[7].isDecimalType).toBe(false);
-		expect(fields[7]?.["_modelName"]).toBe("MyPrismaScalarsType");
-		expect(fields[7]?.["_errorLocation"]).toBe(
+		expect(fields[7]?._modelName).toBe("MyPrismaScalarsType");
+		expect(fields[7]?._errorLocation).toBe(
 			"[Error Location]: Model: 'MyPrismaScalarsType', Field: 'json'.",
 		);
 		expect(fields[7].zodCustomErrors).toBeUndefined();
@@ -362,8 +362,8 @@ describe("testSimpleModelNoValidators", async () => {
 		expect(fields[8].isJsonType).toBe(false);
 		expect(fields[8].isBytesType).toBe(true);
 		expect(fields[8].isDecimalType).toBe(false);
-		expect(fields[8]?.["_modelName"]).toBe("MyPrismaScalarsType");
-		expect(fields[8]?.["_errorLocation"]).toBe(
+		expect(fields[8]?._modelName).toBe("MyPrismaScalarsType");
+		expect(fields[8]?._errorLocation).toBe(
 			"[Error Location]: Model: 'MyPrismaScalarsType', Field: 'bytes'.",
 		);
 		expect(fields[8].zodCustomErrors).toBeUndefined();
@@ -399,8 +399,8 @@ describe("testSimpleModelNoValidators", async () => {
 		expect(fields[9].isJsonType).toBe(false);
 		expect(fields[9].isBytesType).toBe(false);
 		expect(fields[9].isDecimalType).toBe(false);
-		expect(fields[9]?.["_modelName"]).toBe("MyPrismaScalarsType");
-		expect(fields[9]?.["_errorLocation"]).toBe(
+		expect(fields[9]?._modelName).toBe("MyPrismaScalarsType");
+		expect(fields[9]?._errorLocation).toBe(
 			"[Error Location]: Model: 'MyPrismaScalarsType', Field: 'custom'.",
 		);
 		expect(fields[9].zodCustomErrors).toBeUndefined();

@@ -1,23 +1,23 @@
-import { type WriteStatements } from '../types';
-import { writeOutputObjectType } from './contentWriters';
+import type { WriteStatements } from "../types";
+import { writeOutputObjectType } from "./contentWriters";
 
 /////////////////////////////////////////////////
 // FUNCTION
 /////////////////////////////////////////////////
 
 export const writeSingleFileArgTypeStatements: WriteStatements = (
-  dmmf,
-  fileWriter,
+	dmmf,
+	fileWriter,
 ) => {
-  if (!dmmf.generatorConfig.createInputTypes) return;
+	if (!dmmf.generatorConfig.createInputTypes) return;
 
-  fileWriter.writer.blankLine();
+	fileWriter.writer.blankLine();
 
-  fileWriter.writeHeading(`ARGS`, 'FAT');
+	fileWriter.writeHeading(`ARGS`, "FAT");
 
-  dmmf.schema.outputObjectTypes.argTypes.forEach((outputType) => {
-    outputType.prismaActionFields.forEach((field) => {
-      writeOutputObjectType({ dmmf, fileWriter }, field);
-    });
-  });
+	dmmf.schema.outputObjectTypes.argTypes.forEach((outputType) => {
+		outputType.prismaActionFields.forEach((field) => {
+			writeOutputObjectType({ dmmf, fileWriter }, field);
+		});
+	});
 };

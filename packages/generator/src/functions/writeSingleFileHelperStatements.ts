@@ -1,62 +1,62 @@
+import type { WriteStatements } from "../types";
 import {
-  writeDecimalJsLike,
-  // writeDecimalJsLikeList,
-  writeInputJsonValue,
-  writeIsValidDecimalInput,
-  writeJsonValue,
-  writeNullableJsonValue,
-  writeTransformJsonNull,
-} from '.';
-import { type WriteStatements } from '../types';
-import { writeRemoveUndefined } from './contentWriters/writeRemoveUndefined';
+	writeDecimalJsLike,
+	// writeDecimalJsLikeList,
+	writeInputJsonValue,
+	writeIsValidDecimalInput,
+	writeJsonValue,
+	writeNullableJsonValue,
+	writeTransformJsonNull,
+} from ".";
+import { writeRemoveUndefined } from "./contentWriters/writeRemoveUndefined";
 
 /////////////////////////////////////////////////
 // FUNCTION
 /////////////////////////////////////////////////
 
 export const writeSingleFileHelperStatements: WriteStatements = (
-  dmmf,
-  fileWriter,
+	dmmf,
+	fileWriter,
 ) => {
-  fileWriter.writer.blankLine();
-  fileWriter.writeHeading('HELPER FUNCTIONS', 'FAT');
-  fileWriter.writer.blankLine();
+	fileWriter.writer.blankLine();
+	fileWriter.writeHeading("HELPER FUNCTIONS", "FAT");
+	fileWriter.writer.blankLine();
 
-  // EXACT OPTIONAL PROPERTY TYPES
-  // ------------------------------------------------------------
+	// EXACT OPTIONAL PROPERTY TYPES
+	// ------------------------------------------------------------
 
-  if (dmmf.generatorConfig.useExactOptionalPropertyTypes) {
-    fileWriter.writeHeading(`EXACT OPTIONAL PROPERTY TYPES`, 'SLIM');
+	if (dmmf.generatorConfig.useExactOptionalPropertyTypes) {
+		fileWriter.writeHeading(`EXACT OPTIONAL PROPERTY TYPES`, "SLIM");
 
-    writeRemoveUndefined({ fileWriter, dmmf });
+		writeRemoveUndefined({ fileWriter, dmmf });
 
-    fileWriter.writer.newLine();
-  }
+		fileWriter.writer.newLine();
+	}
 
-  // JSON
-  // ------------------------------------------------------------
+	// JSON
+	// ------------------------------------------------------------
 
-  if (dmmf.schema.hasJsonTypes) {
-    fileWriter.writeHeading(`JSON`, 'SLIM');
+	if (dmmf.schema.hasJsonTypes) {
+		fileWriter.writeHeading(`JSON`, "SLIM");
 
-    writeTransformJsonNull({ fileWriter, dmmf });
-    writeJsonValue({ fileWriter, dmmf });
-    writeNullableJsonValue({ fileWriter, dmmf });
-    writeInputJsonValue({ fileWriter, dmmf });
+		writeTransformJsonNull({ fileWriter, dmmf });
+		writeJsonValue({ fileWriter, dmmf });
+		writeNullableJsonValue({ fileWriter, dmmf });
+		writeInputJsonValue({ fileWriter, dmmf });
 
-    fileWriter.writer.newLine();
-  }
+		fileWriter.writer.newLine();
+	}
 
-  // DECIMAL
-  // ------------------------------------------------------------
+	// DECIMAL
+	// ------------------------------------------------------------
 
-  if (dmmf.schema.hasDecimalTypes) {
-    fileWriter.writeHeading(`DECIMAL`, 'SLIM');
+	if (dmmf.schema.hasDecimalTypes) {
+		fileWriter.writeHeading(`DECIMAL`, "SLIM");
 
-    writeDecimalJsLike({ fileWriter, dmmf });
-    // writeDecimalJsLikeList({ fileWriter, dmmf });
-    writeIsValidDecimalInput({ fileWriter, dmmf });
+		writeDecimalJsLike({ fileWriter, dmmf });
+		// writeDecimalJsLikeList({ fileWriter, dmmf });
+		writeIsValidDecimalInput({ fileWriter, dmmf });
 
-    fileWriter.writer.newLine();
-  }
+		fileWriter.writer.newLine();
+	}
 };

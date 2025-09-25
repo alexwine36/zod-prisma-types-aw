@@ -1,13 +1,13 @@
-import { FormattedNames } from '../classes/formattedNames';
-import {
-  PrismaAction,
-  PrismaActionPrimitives,
-  PrismaScalarType,
-  ZodCustomErrorKey,
-  ZodPrismaScalarType,
-  ZodScalarType,
-  ZodValidatorType,
-} from '../types';
+import { FormattedNames } from "../classes/formattedNames";
+import type {
+	PrismaAction,
+	PrismaActionPrimitives,
+	PrismaScalarType,
+	ZodCustomErrorKey,
+	ZodPrismaScalarType,
+	ZodScalarType,
+	ZodValidatorType,
+} from "../types";
 
 /////////////////////////////////////////////////
 // VALIDATOR TYPE MAP
@@ -27,24 +27,24 @@ import {
  * @example myPrismaField: Int ///@zod.string.max(10) -> invalid throws error during generation
  */
 export const PRISMA_TO_VALIDATOR_TYPE_MAP: Record<
-  ZodValidatorType | 'custom',
-  PrismaScalarType[]
+	ZodValidatorType | "custom",
+	PrismaScalarType[]
 > = {
-  string: ['String'],
-  number: ['Float', 'Int'],
-  bigint: ['BigInt'],
-  date: ['DateTime'],
-  custom: [
-    'String',
-    'Boolean',
-    'Int',
-    'BigInt',
-    'Float',
-    'Decimal',
-    'DateTime',
-    'Json',
-    'Bytes',
-  ],
+	string: ["String"],
+	number: ["Float", "Int"],
+	bigint: ["BigInt"],
+	date: ["DateTime"],
+	custom: [
+		"String",
+		"Boolean",
+		"Int",
+		"BigInt",
+		"Float",
+		"Decimal",
+		"DateTime",
+		"Json",
+		"Bytes",
+	],
 };
 
 /////////////////////////////////////////////////
@@ -55,15 +55,15 @@ export const PRISMA_TO_VALIDATOR_TYPE_MAP: Record<
  * Map prisma scalar types to their corresponding zod validators.
  */
 export const PRISMA_TO_ZOD_TYPE_MAP: Record<
-  ZodPrismaScalarType,
-  ZodScalarType
+	ZodPrismaScalarType,
+	ZodScalarType
 > = {
-  String: 'string',
-  Boolean: 'boolean',
-  DateTime: 'date',
-  Int: 'number',
-  BigInt: 'bigint',
-  Float: 'number',
+	String: "string",
+	Boolean: "boolean",
+	DateTime: "date",
+	Int: "number",
+	BigInt: "bigint",
+	Float: "number",
 };
 
 /////////////////////////////////////////////////
@@ -74,9 +74,9 @@ export const PRISMA_TO_ZOD_TYPE_MAP: Record<
  * @deprecated
  */
 export const ZOD_VALID_ERROR_KEYS: ZodCustomErrorKey[] = [
-  'invalid_type_error',
-  'required_error',
-  'description',
+	"invalid_type_error",
+	"required_error",
+	"description",
 ];
 
 /////////////////////////////////////////////
@@ -84,13 +84,13 @@ export const ZOD_VALID_ERROR_KEYS: ZodCustomErrorKey[] = [
 /////////////////////////////////////////////
 
 export type FilterdPrismaAction = Exclude<
-  PrismaAction,
-  'executeRaw' | 'queryRaw' | 'count'
+	PrismaAction,
+	"executeRaw" | "queryRaw" | "count"
 >;
 
 export type FilterdPrismaActionPrimitive = Exclude<
-  PrismaActionPrimitives,
-  'executeRaw' | 'queryRaw' | 'count'
+	PrismaActionPrimitives,
+	"executeRaw" | "queryRaw" | "count"
 >;
 
 /**
@@ -99,25 +99,25 @@ export type FilterdPrismaActionPrimitive = Exclude<
  * @example type UserFindUnique // becomes const UserFindUnique = ...
  */
 export const PRISMA_ACTION_ARG_MAP: Record<
-  FilterdPrismaAction,
-  FormattedNames
+	FilterdPrismaAction,
+	FormattedNames
 > = {
-  findUnique: new FormattedNames('findUnique'),
-  findUniqueOrThrow: new FormattedNames('findUniqueOrThrow'),
-  findMany: new FormattedNames('findMany'),
-  findFirst: new FormattedNames('findFirst'),
-  findFirstOrThrow: new FormattedNames('findFirstOrThrow'),
-  createOne: new FormattedNames('create'),
-  createMany: new FormattedNames('createMany'),
-  createManyAndReturn: new FormattedNames('createManyAndReturn'),
-  updateManyAndReturn: new FormattedNames('updateManyAndReturn'),
-  updateOne: new FormattedNames('update'),
-  updateMany: new FormattedNames('updateMany'),
-  upsertOne: new FormattedNames('upsert'),
-  deleteOne: new FormattedNames('delete'),
-  deleteMany: new FormattedNames('deleteMany'),
-  aggregate: new FormattedNames('aggregate'),
-  groupBy: new FormattedNames('groupBy'),
+	findUnique: new FormattedNames("findUnique"),
+	findUniqueOrThrow: new FormattedNames("findUniqueOrThrow"),
+	findMany: new FormattedNames("findMany"),
+	findFirst: new FormattedNames("findFirst"),
+	findFirstOrThrow: new FormattedNames("findFirstOrThrow"),
+	createOne: new FormattedNames("create"),
+	createMany: new FormattedNames("createMany"),
+	createManyAndReturn: new FormattedNames("createManyAndReturn"),
+	updateManyAndReturn: new FormattedNames("updateManyAndReturn"),
+	updateOne: new FormattedNames("update"),
+	updateMany: new FormattedNames("updateMany"),
+	upsertOne: new FormattedNames("upsert"),
+	deleteOne: new FormattedNames("delete"),
+	deleteMany: new FormattedNames("deleteMany"),
+	aggregate: new FormattedNames("aggregate"),
+	groupBy: new FormattedNames("groupBy"),
 };
 
 /**
@@ -125,22 +125,22 @@ export const PRISMA_ACTION_ARG_MAP: Record<
  * we want to generate a zod input schema.
  */
 export const PRISMA_ACTION_ARRAY: FilterdPrismaActionPrimitive[][] = [
-  ['findUnique', 'OrThrow'],
-  ['findUnique'],
-  ['findMany'],
-  ['findFirst', 'OrThrow'],
-  ['findFirst'],
-  ['createOne'],
-  ['createMany', 'AndReturn'],
-  ['createMany'],
-  ['updateOne'],
-  ['updateMany', 'AndReturn'],
-  ['updateMany'],
-  ['upsertOne'],
-  ['deleteOne'],
-  ['deleteMany'],
-  ['aggregate'],
-  ['groupBy'],
+	["findUnique", "OrThrow"],
+	["findUnique"],
+	["findMany"],
+	["findFirst", "OrThrow"],
+	["findFirst"],
+	["createOne"],
+	["createMany", "AndReturn"],
+	["createMany"],
+	["updateOne"],
+	["updateMany", "AndReturn"],
+	["updateMany"],
+	["upsertOne"],
+	["deleteOne"],
+	["deleteMany"],
+	["aggregate"],
+	["groupBy"],
 ];
 
 /**
@@ -149,25 +149,25 @@ export const PRISMA_ACTION_ARRAY: FilterdPrismaActionPrimitive[][] = [
  */
 
 export const PRISMA_ACTION_MATCHER_ARRAY: PrismaActionMatcher[] = [
-  [['findUnique', 'OrThrow'], 'findUniqueOrThrow'],
-  [['findUnique'], 'findUnique'],
-  [['findMany'], 'findMany'],
-  [['findFirst', 'OrThrow'], 'findFirstOrThrow'],
-  [['findFirst'], 'findFirst'],
-  [['createOne'], 'createOne'],
-  [['createMany', 'AndReturn'], 'createManyAndReturn'],
-  [['updateMany', 'AndReturn'], 'updateManyAndReturn'],
-  [['createMany'], 'createMany'],
-  [['updateOne'], 'updateOne'],
-  [['updateMany'], 'updateMany'],
-  [['upsertOne'], 'upsertOne'],
-  [['deleteOne'], 'deleteOne'],
-  [['deleteMany'], 'deleteMany'],
-  [['aggregate'], 'aggregate'],
-  [['groupBy'], 'groupBy'],
+	[["findUnique", "OrThrow"], "findUniqueOrThrow"],
+	[["findUnique"], "findUnique"],
+	[["findMany"], "findMany"],
+	[["findFirst", "OrThrow"], "findFirstOrThrow"],
+	[["findFirst"], "findFirst"],
+	[["createOne"], "createOne"],
+	[["createMany", "AndReturn"], "createManyAndReturn"],
+	[["updateMany", "AndReturn"], "updateManyAndReturn"],
+	[["createMany"], "createMany"],
+	[["updateOne"], "updateOne"],
+	[["updateMany"], "updateMany"],
+	[["upsertOne"], "upsertOne"],
+	[["deleteOne"], "deleteOne"],
+	[["deleteMany"], "deleteMany"],
+	[["aggregate"], "aggregate"],
+	[["groupBy"], "groupBy"],
 ];
 
 export type PrismaActionMatcher = [
-  FilterdPrismaActionPrimitive[],
-  FilterdPrismaAction,
+	FilterdPrismaActionPrimitive[],
+	FilterdPrismaAction,
 ];

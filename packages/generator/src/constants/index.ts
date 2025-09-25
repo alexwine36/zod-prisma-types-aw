@@ -1,2 +1,2 @@
-export * from './objectMaps';
-export * from './regex';
+export * from "./objectMaps";
+export * from "./regex";

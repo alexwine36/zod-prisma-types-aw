@@ -1,16 +1,15 @@
-import { Prisma } from '../../prisma/generated/client';
-import { initTRPC } from '@trpc/server';
-import { createHTTPServer } from '@trpc/server/adapters/standalone';
+import { initTRPC } from "@trpc/server";
+import { createHTTPServer } from "@trpc/server/adapters/standalone";
+import superjson from "superjson";
+import type { Prisma } from "../../prisma/generated/client";
 import {
-  DateModelSchema,
-  DecimalModelCreateInputSchema,
-  DecimalNullableFilterSchema,
-  JsonModelCreateInputSchema,
-  JsonModelSchema,
-  isValidDecimalInput,
-} from '../../prisma/generated/zod';
-
-import superjson from 'superjson';
+	DateModelSchema,
+	DecimalModelCreateInputSchema,
+	DecimalNullableFilterSchema,
+	isValidDecimalInput,
+	JsonModelCreateInputSchema,
+	JsonModelSchema,
+} from "../../prisma/generated/zod";
 
 export type AppRouter = typeof appRouter;
 
@@ -30,66 +29,66 @@ const router = t.router;
 // -----------------------------------
 
 const decimal = publicProcedure
-  .input(DecimalModelCreateInputSchema)
-  .query(({ input }) => {
-    const isDecimal = isValidDecimalInput(input.decimal);
-    const isDecimalOpt = isValidDecimalInput(input.decimalOpt);
-    return { isDecimal, isDecimalOpt };
-  });
+	.input(DecimalModelCreateInputSchema)
+	.query(({ input }) => {
+		const isDecimal = isValidDecimalInput(input.decimal);
+		const isDecimalOpt = isValidDecimalInput(input.decimalOpt);
+		return { isDecimal, isDecimalOpt };
+	});
 
 const decimalList = publicProcedure
-  .input(DecimalNullableFilterSchema)
-  .query(({ input }) => {
-    const isDecimalIn = (input.in as any[]).every(
-      (
-        i:
-          | string
-          | number
-          | Prisma.Decimal
-          | Prisma.DecimalJsLike
-          | null
-          | undefined,
-      ) => isValidDecimalInput(i),
-    ) as boolean;
-    const isDecimalNotIn = (input.notIn as any).every(
-      (
-        i:
-          | string
-          | number
-          | Prisma.Decimal
-          | Prisma.DecimalJsLike
-          | null
-          | undefined,
-      ) => isValidDecimalInput(i),
-    ) as boolean;
-    return { isDecimalIn, isDecimalNotIn };
-  });
+	.input(DecimalNullableFilterSchema)
+	.query(({ input }) => {
+		const isDecimalIn = (input.in as any[]).every(
+			(
+				i:
+					| string
+					| number
+					| Prisma.Decimal
+					| Prisma.DecimalJsLike
+					| null
+					| undefined,
+			) => isValidDecimalInput(i),
+		) as boolean;
+		const isDecimalNotIn = (input.notIn as any).every(
+			(
+				i:
+					| string
+					| number
+					| Prisma.Decimal
+					| Prisma.DecimalJsLike
+					| null
+					| undefined,
+			) => isValidDecimalInput(i),
+		) as boolean;
+		return { isDecimalIn, isDecimalNotIn };
+	});
 
 // JSON
 // -----------------------------------
 
 const json = publicProcedure.input(JsonModelSchema).query(({ input }) => {
-  const jsonIsObject = input.json instanceof Object;
-  const jsonOptIsObject = input.jsonOpt instanceof Object;
+	const jsonIsObject = input.json instanceof Object;
+	const jsonOptIsObject = input.jsonOpt instanceof Object;
 
-  return { jsonIsObject, jsonOptIsObject };
+	return { jsonIsObject, jsonOptIsObject };
 });
 
 const jsonCreate = publicProcedure
-  .input(JsonModelCreateInputSchema)
-  .mutation(({ input }) => {
-    const jsonIsObject = input.json instanceof Object;
-    const jsonOptIsObject = input.jsonOpt instanceof Object;
-    return { jsonIsObject, jsonOptIsObject };
-  });
+	.input(JsonModelCreateInputSchema)
+	.mutation(({ input }) => {
+		const jsonIsObject = input.json instanceof Object;
+		const jsonOptIsObject = input.jsonOpt instanceof Object;
+		return { jsonIsObject, jsonOptIsObject };
+	});
 
 // DATE
 // -----------------------------------
 
 const date = publicProcedure.input(DateModelSchema).query(({ input }) => {
-  const dateIsDateInput = input.date instanceof Date;
-  const dateOptIsDateInput = input.dateOpt instanceof Date;
-  return { dateIsDateInput, dateOptIsDateInput };
+	const dateIsDateInput = input.date instanceof Date;
+	const dateOptIsDateInput = input.dateOpt instanceof Date;
+	return { dateIsDateInput, dateOptIsDateInput };
 });
 
 ///////////////////////////////////////
@@ -97,11 +96,11 @@ const date = publicProcedure.input(DateModelSchema).query(({ input }) => {
 ///////////////////////////////////////
 
 const appRouter = router({
-  decimal,
-  decimalList,
-  json,
-  jsonCreate,
-  date,
+	decimal,
+	decimalList,
+	json,
+	jsonCreate,
+	date,
 });
 
 ///////////////////////////////////////
@@ -109,10 +108,10 @@ const appRouter = router({
 ///////////////////////////////////////
 
 export const getServer = () => {
-  return createHTTPServer({
-    router: appRouter,
-    createContext() {
-      return {};
-    },
-  });
+	return createHTTPServer({
+		router: appRouter,
+		createContext() {
+			return {};
+		},
+	});
 };

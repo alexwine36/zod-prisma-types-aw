@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
-import { WriteTypeFunction } from '../../types';
+import type { WriteTypeFunction } from "../../types";
 
 /////////////////////////////////////////////////
 // FUNCTION
@@ -15,89 +15,89 @@ import { WriteTypeFunction } from '../../types';
  * @returns CodeBlockWriter | undefined
  */
 export const writeScalarType: WriteTypeFunction = (
-  writer,
-  {
-    inputType,
-    isOptional,
-    isNullable,
-    writeComma = true,
-    zodCustomErrors,
-    zodValidatorString,
-    zodCustomValidatorString,
-    writeValidation = true,
-  },
+	writer,
+	{
+		inputType,
+		isOptional,
+		isNullable,
+		writeComma = true,
+		zodCustomErrors,
+		zodValidatorString,
+		zodCustomValidatorString,
+		writeValidation = true,
+	},
 ) => {
-  const zodType = inputType.getZodScalarType();
-  if (!zodType) return;
+	const zodType = inputType.getZodScalarType();
+	if (!zodType) return;
 
-  if (zodCustomValidatorString) {
-    if (zodType === 'date') {
-      return writer
-        .conditionalWrite(
-          inputType.generatorConfig.addInputTypeValidation,
-          zodCustomValidatorString,
-        )
-        .conditionalWrite(
-          !inputType.generatorConfig.addInputTypeValidation &&
-            !inputType.generatorConfig.coerceDate,
-          `z.${zodType}()`,
-        )
-        .conditionalWrite(
-          !inputType.generatorConfig.addInputTypeValidation &&
-            inputType.generatorConfig.coerceDate,
-          `z.coerce.${zodType}()`,
-        )
-        .conditionalWrite(inputType.isList, `.array()`)
-        .conditionalWrite(isOptional, `.optional()`)
-        .conditionalWrite(isNullable, `.nullable()`)
-        .conditionalWrite(writeComma, `,`);
-    }
+	if (zodCustomValidatorString) {
+		if (zodType === "date") {
+			return writer
+				.conditionalWrite(
+					inputType.generatorConfig.addInputTypeValidation,
+					zodCustomValidatorString,
+				)
+				.conditionalWrite(
+					!inputType.generatorConfig.addInputTypeValidation &&
+						!inputType.generatorConfig.coerceDate,
+					`z.${zodType}()`,
+				)
+				.conditionalWrite(
+					!inputType.generatorConfig.addInputTypeValidation &&
+						inputType.generatorConfig.coerceDate,
+					`z.coerce.${zodType}()`,
+				)
+				.conditionalWrite(inputType.isList, `.array()`)
+				.conditionalWrite(isOptional, `.optional()`)
+				.conditionalWrite(isNullable, `.nullable()`)
+				.conditionalWrite(writeComma, `,`);
+		}
 
-    // only writes the validator string if the user has not disabled input type validation
-    return writer
-      .conditionalWrite(
-        inputType.generatorConfig.addInputTypeValidation,
-        zodCustomValidatorString,
-      )
-      .conditionalWrite(
-        !inputType.generatorConfig.addInputTypeValidation,
-        `z.${zodType}()`,
-      )
-      .conditionalWrite(inputType.isList, `.array()`)
-      .conditionalWrite(isOptional, `.optional()`)
-      .conditionalWrite(isNullable, `.nullable()`)
-      .conditionalWrite(writeComma, `,`);
-  }
+		// only writes the validator string if the user has not disabled input type validation
+		return writer
+			.conditionalWrite(
+				inputType.generatorConfig.addInputTypeValidation,
+				zodCustomValidatorString,
+			)
+			.conditionalWrite(
+				!inputType.generatorConfig.addInputTypeValidation,
+				`z.${zodType}()`,
+			)
+			.conditionalWrite(inputType.isList, `.array()`)
+			.conditionalWrite(isOptional, `.optional()`)
+			.conditionalWrite(isNullable, `.nullable()`)
+			.conditionalWrite(writeComma, `,`);
+	}
 
-  if (zodType === 'date') {
-    return writer
-      .conditionalWrite(!inputType.generatorConfig.coerceDate, `z.${zodType}(`)
-      .conditionalWrite(
-        inputType.generatorConfig.coerceDate,
-        `z.coerce.${zodType}(`,
-      )
-      .conditionalWrite(writeValidation && !!zodCustomErrors, zodCustomErrors!)
-      .write(`)`)
-      .conditionalWrite(
-        writeValidation && !!zodValidatorString,
-        zodValidatorString!,
-      )
-      .conditionalWrite(inputType.isList, `.array()`)
-      .conditionalWrite(isOptional, `.optional()`)
-      .conditionalWrite(isNullable, `.nullable()`)
-      .conditionalWrite(writeComma, `,`);
-  }
+	if (zodType === "date") {
+		return writer
+			.conditionalWrite(!inputType.generatorConfig.coerceDate, `z.${zodType}(`)
+			.conditionalWrite(
+				inputType.generatorConfig.coerceDate,
+				`z.coerce.${zodType}(`,
+			)
+			.conditionalWrite(writeValidation && !!zodCustomErrors, zodCustomErrors!)
+			.write(`)`)
+			.conditionalWrite(
+				writeValidation && !!zodValidatorString,
+				zodValidatorString!,
+			)
+			.conditionalWrite(inputType.isList, `.array()`)
+			.conditionalWrite(isOptional, `.optional()`)
+			.conditionalWrite(isNullable, `.nullable()`)
+			.conditionalWrite(writeComma, `,`);
+	}
 
-  return writer
-    .write(`z.${zodType}(`)
-    .conditionalWrite(writeValidation && !!zodCustomErrors, zodCustomErrors!)
-    .write(`)`)
-    .conditionalWrite(
-      writeValidation && !!zodValidatorString,
-      zodValidatorString!,
-    )
-    .conditionalWrite(inputType.isList, `.array()`)
-    .conditionalWrite(isOptional, `.optional()`)
-    .conditionalWrite(isNullable, `.nullable()`)
-    .conditionalWrite(writeComma, `,`);
+	return writer
+		.write(`z.${zodType}(`)
+		.conditionalWrite(writeValidation && !!zodCustomErrors, zodCustomErrors!)
+		.write(`)`)
+		.conditionalWrite(
+			writeValidation && !!zodValidatorString,
+			zodValidatorString!,
+		)
+		.conditionalWrite(inputType.isList, `.array()`)
+		.conditionalWrite(isOptional, `.optional()`)
+		.conditionalWrite(isNullable, `.nullable()`)
+		.conditionalWrite(writeComma, `,`);
 };

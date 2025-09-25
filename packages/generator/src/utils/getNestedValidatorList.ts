@@ -12,51 +12,51 @@
  * @returns {string[]} An array of individual validator patterns extracted from the input string.
  */
 export const getNestedValidatorList = (validatorPattern: string) => {
-  const splitIndices = getSplitIndices(validatorPattern);
-  return getPatternListFromSplitIndices(validatorPattern, splitIndices);
+	const splitIndices = getSplitIndices(validatorPattern);
+	return getPatternListFromSplitIndices(validatorPattern, splitIndices);
 };
 
 // GET SPLIT INDICES
 // ----------------------------------------------
 
 export const getSplitIndices = (string: string, match = /\.\w+$/) => {
-  const splitIndices = [0];
-  let depth = 0;
+	const splitIndices = [0];
+	let depth = 0;
 
-  [...string].forEach((char, idx) => {
-    if (!depth && !isWordChar(char)) {
-      const splitPosition = string.substring(0, idx).match(match)?.index;
-      if (splitPosition) splitIndices.push(splitPosition);
-    }
+	[...string].forEach((char, idx) => {
+		if (!depth && !isWordChar(char)) {
+			const splitPosition = string.substring(0, idx).match(match)?.index;
+			if (splitPosition) splitIndices.push(splitPosition);
+		}
 
-    if (char === '(') depth++;
-    if (char === ')') depth--;
-  });
+		if (char === "(") depth++;
+		if (char === ")") depth--;
+	});
 
-  return splitIndices;
+	return splitIndices;
 };
 
 // GET PATTERN LIST FROM SPLIT INDICES
 // ----------------------------------------------
 
 export const getPatternListFromSplitIndices = (
-  validatorPattern: string,
-  splitIndices: number[],
+	validatorPattern: string,
+	splitIndices: number[],
 ) => {
-  const patternList: string[] = [];
+	const patternList: string[] = [];
 
-  for (let i = 0; i < splitIndices.length; i++) {
-    const start = splitIndices[i];
-    const end = splitIndices[i + 1] ?? validatorPattern.length;
-    patternList.push(validatorPattern.substring(start, end).trimEnd());
-  }
+	for (let i = 0; i < splitIndices.length; i++) {
+		const start = splitIndices[i];
+		const end = splitIndices[i + 1] ?? validatorPattern.length;
+		patternList.push(validatorPattern.substring(start, end).trimEnd());
+	}
 
-  return patternList;
+	return patternList;
 };
 
 // HELPERS
 // ----------------------------------------------
 
 export const isWordChar = (char: string) => {
-  return /[\w]/.test(char);
+	return /[\w]/.test(char);
 };

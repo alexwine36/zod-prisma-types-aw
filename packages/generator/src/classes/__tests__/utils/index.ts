@@ -1,1 +1,1 @@
-export * from './loadDMMF';
+export * from "./loadDMMF";

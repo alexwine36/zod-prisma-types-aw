@@ -1,7 +1,6 @@
-import type DMMF from '@prisma/dmmf';
-
-import { ExtendedDMMFFieldBase } from './01_extendedDMMFFieldBase';
-import { GeneratorConfig } from '../../schemas';
+import type DMMF from "@prisma/dmmf";
+import type { GeneratorConfig } from "../../schemas";
+import { ExtendedDMMFFieldBase } from "./01_extendedDMMFFieldBase";
 
 /////////////////////////////////////////////////
 // REGEX
@@ -17,36 +16,36 @@ import { GeneratorConfig } from '../../schemas';
 // "u" flag for Unicode support
 
 export const VALIDATOR_TYPE_REGEX =
-  /@zod(?<import>\.import\(\[(?<imports>[\w\s"@'${}/,;:.~*-]+)\]\))?\.(?<type>[\w]+){1}(?<customErrors>\([{][\w\p{Script=Cyrillic}\p{Script=Latin}\p{Script=Hiragana}\p{Script=Katakana}\p{Script=Han}\p{M} (),'"。、|\\:+*#!§$%&/{}[\]=?~><°^\\-]+[}]\))?(?<validatorPattern>[\w\p{Script=Cyrillic}\p{Script=Latin}\p{Script=Hiragana}\p{Script=Katakana}\p{Script=Han}\p{Punctuation}\p{M}\p{N} (),.'`"。、|\\:+*#!§$%&/{}[\]=?~><°^\\-]*[)])?/u;
+	/@zod(?<import>\.import\(\[(?<imports>[\w\s"@'${}/,;:.~*-]+)\]\))?\.(?<type>[\w]+){1}(?<customErrors>\([{][\w\p{Script=Cyrillic}\p{Script=Latin}\p{Script=Hiragana}\p{Script=Katakana}\p{Script=Han}\p{M} (),'"。、|\\:+*#!§$%&/{}[\]=?~><°^-]+[}]\))?(?<validatorPattern>[\w\p{Script=Cyrillic}\p{Script=Latin}\p{Script=Hiragana}\p{Script=Katakana}\p{Script=Han}\p{Punctuation}\p{M}\p{N} (),.'`"。、|\\:+*#!§$%&/{}[\]=?~><°^-]*[)])?/u;
 
 /////////////////////////////////////////////////
 // CLASS
 /////////////////////////////////////////////////
 
 export class ExtendedDMMFFieldValidatorMatch extends ExtendedDMMFFieldBase {
-  protected _validatorMatch?: RegExpMatchArray;
-  readonly clearedDocumentation?: string;
+	 _validatorMatch?: RegExpMatchArray;
+	readonly clearedDocumentation?: string;
 
-  constructor(
-    field: DMMF.Field,
-    generatorConfig: GeneratorConfig,
-    modelName: string,
-  ) {
-    super(field, generatorConfig, modelName);
+	constructor(
+		field: DMMF.Field,
+		generatorConfig: GeneratorConfig,
+		modelName: string,
+	) {
+		super(field, generatorConfig, modelName);
 
-    this._validatorMatch = this._getValidatorMatchArray();
-    this.clearedDocumentation = this._getClearedDocumentation();
-  }
+		this._validatorMatch = this._getValidatorMatchArray();
+		this.clearedDocumentation = this._getClearedDocumentation();
+	}
 
-  private _getValidatorMatchArray() {
-    if (!this.documentation) return;
-    return this.documentation.match(VALIDATOR_TYPE_REGEX) ?? undefined;
-  }
+	private _getValidatorMatchArray() {
+		if (!this.documentation) return;
+		return this.documentation.match(VALIDATOR_TYPE_REGEX) ?? undefined;
+	}
 
-  private _getClearedDocumentation() {
-    if (!this.documentation) return;
-    return (
-      this.documentation.replace(VALIDATOR_TYPE_REGEX, '').trim() || undefined
-    );
-  }
+	private _getClearedDocumentation() {
+		if (!this.documentation) return;
+		return (
+			this.documentation.replace(VALIDATOR_TYPE_REGEX, "").trim() || undefined
+		);
+	}
 }

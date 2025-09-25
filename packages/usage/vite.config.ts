@@ -1,9 +1,9 @@
-import { defineConfig } from 'vitest/config';
+import { defineConfig } from "vitest/config";
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  test: {
-    globals: true,
-    threads: false,
-  },
+	test: {
+		globals: true,
+		threads: false,
+	},
 });

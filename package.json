@@ -5,7 +5,8 @@
 	"main": "index.js",
 	"scripts": {
 		"test": "turbo run test",
-		"lint": "biome check --write"
+		"lint": "biome check --write --unsafe --log-level=error",
+		"lint:ci": "biome lint --log-level=error"
 	},
 	"keywords": [],
 	"author": "",

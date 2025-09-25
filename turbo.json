@@ -1,10 +1,13 @@
 {
-  "$schema": "https://turbo.build/schema.json",
-  "tasks": {
-    "build": {
-      "outputs": ["dist/**"]
-    },
-    "lint": {},
-    "test": {}
-  }
+	"$schema": "https://turbo.build/schema.json",
+	"tasks": {
+		"build": {
+			"outputs": ["dist/**"]
+		},
+		"lint": {},
+		"gen:prisma": {},
+		"test": {
+			"dependsOn": ["gen:prisma"]
+		}
+	}
 }

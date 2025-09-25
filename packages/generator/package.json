@@ -26,18 +26,18 @@
 		"zod-prisma-types": "dist/bin.js"
 	},
 	"scripts": {
-		"test": "vitest",
+		"test": "vitest run",
 		"build": "tsc"
 	},
 	"devDependencies": {
-		"@prisma/internals": "^6.6.0",
+		"@prisma/internals": "^6.16.2",
 		"@types/lodash": "^4.17.16",
 		"typescript": "^5.8.3",
 		"vitest": "^3.1.1"
 	},
 	"dependencies": {
-		"@prisma/dmmf": "^6.6.0",
-		"@prisma/generator-helper": "^6.6.0",
+		"@prisma/dmmf": "^6.16.2",
+		"@prisma/generator-helper": "^6.16.2",
 		"code-block-writer": "^13.0.3",
 		"lodash": "^4.17.21",
 		"zod": "3.24.2"

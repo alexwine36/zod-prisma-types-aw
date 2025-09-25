@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
-import { WriteTypeFunction, WriteTypeOptions } from '../../types';
+import type { WriteTypeFunction, WriteTypeOptions } from "../../types";
 
 /////////////////////////////////////////////////
 // FUNCTION
@@ -16,18 +16,18 @@ import { WriteTypeFunction, WriteTypeOptions } from '../../types';
  * @returns CodeBlockWriter | undefined
  */
 export const writeNonScalarType: WriteTypeFunction<WriteTypeOptions> = (
-  writer,
-  { inputType, isOptional, isNullable, writeLazy = true, writeComma = true },
+	writer,
+	{ inputType, isOptional, isNullable, writeLazy = true, writeComma = true },
 ) => {
-  const nonScalarType = inputType.getZodNonScalarType();
+	const nonScalarType = inputType.getZodNonScalarType();
 
-  if (!nonScalarType) return;
+	if (!nonScalarType) return;
 
-  return writer
-    .conditionalWrite(writeLazy, `z.lazy(() => ${nonScalarType}Schema)`)
-    .conditionalWrite(!writeLazy, `${nonScalarType}Schema`)
-    .conditionalWrite(inputType.isList, `.array()`)
-    .conditionalWrite(isOptional, `.optional()`)
-    .conditionalWrite(isNullable, `.nullable()`)
-    .conditionalWrite(writeComma, `,`);
+	return writer
+		.conditionalWrite(writeLazy, `z.lazy(() => ${nonScalarType}Schema)`)
+		.conditionalWrite(!writeLazy, `${nonScalarType}Schema`)
+		.conditionalWrite(inputType.isList, `.array()`)
+		.conditionalWrite(isOptional, `.optional()`)
+		.conditionalWrite(isNullable, `.nullable()`)
+		.conditionalWrite(writeComma, `,`);
 };

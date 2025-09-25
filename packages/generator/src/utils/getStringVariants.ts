@@ -1,45 +1,45 @@
-import _ from 'lodash';
+import _ from "lodash";
 
 /////////////////////////////////////////
 //  TYPES & INTERFACES
 /////////////////////////////////////////
 
 export interface StringVariants {
-  /**
-   * String with original formatting
-   */
+	/**
+	 * String with original formatting
+	 */
 
-  original: string;
-  /**
-   * String with camelCase formatting
-   * @example 'camelCase'
-   */
+	original: string;
+	/**
+	 * String with camelCase formatting
+	 * @example 'camelCase'
+	 */
 
-  camelCase: string;
-  /**
-   * String with PascalCase formatting
-   * @example 'PascalCase'
-   * @see https://lodash.com/docs/4.17.15#camelCase
-   * @see https://lodash.com/docs/4.17.15#upperFirst
-   */
+	camelCase: string;
+	/**
+	 * String with PascalCase formatting
+	 * @example 'PascalCase'
+	 * @see https://lodash.com/docs/4.17.15#camelCase
+	 * @see https://lodash.com/docs/4.17.15#upperFirst
+	 */
 
-  pascalCase: string;
-  /**
-   * String with UPPER_CASE_WITH_LODASH_SEPARATOR formatting
-   * @example 'UPPER_CASE_WITH_LODASH_SEPARATOR'
-   * @see https://lodash.com/docs/4.17.15#snakeCase
-   * @see https://lodash.com/docs/4.17.15#toUpper
-   */
+	pascalCase: string;
+	/**
+	 * String with UPPER_CASE_WITH_LODASH_SEPARATOR formatting
+	 * @example 'UPPER_CASE_WITH_LODASH_SEPARATOR'
+	 * @see https://lodash.com/docs/4.17.15#snakeCase
+	 * @see https://lodash.com/docs/4.17.15#toUpper
+	 */
 
-  upperCaseLodash: string;
-  /**
-   * String with UPPER CASE WITH SPACE SEPARATOR formatting
-   * @example 'UPPER CASE WITH SPACE SEPARATOR'
-   * @see https://lodash.com/docs/4.17.15#camelCase
-   * @see https://lodash.com/docs/4.17.15#upperCase
-   */
+	upperCaseLodash: string;
+	/**
+	 * String with UPPER CASE WITH SPACE SEPARATOR formatting
+	 * @example 'UPPER CASE WITH SPACE SEPARATOR'
+	 * @see https://lodash.com/docs/4.17.15#camelCase
+	 * @see https://lodash.com/docs/4.17.15#upperCase
+	 */
 
-  upperCaseSpace: string;
+	upperCaseSpace: string;
 }
 
 /////////////////////////////////////////
@@ -54,11 +54,11 @@ export interface StringVariants {
  */
 
 export function getStringVariants(string: string): StringVariants {
-  return {
-    original: string,
-    camelCase: _.camelCase(string),
-    pascalCase: _.upperFirst(_.camelCase(string)),
-    upperCaseLodash: _.toUpper(_.snakeCase(string)),
-    upperCaseSpace: _.upperCase(_.camelCase(string)),
-  };
+	return {
+		original: string,
+		camelCase: _.camelCase(string),
+		pascalCase: _.upperFirst(_.camelCase(string)),
+		upperCaseLodash: _.toUpper(_.snakeCase(string)),
+		upperCaseSpace: _.upperCase(_.camelCase(string)),
+	};
 }

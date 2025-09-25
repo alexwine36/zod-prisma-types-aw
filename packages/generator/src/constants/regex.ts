@@ -6,10 +6,10 @@
 // ----------------------------------------
 
 export const PRISMA_FUNCTION_TYPES_WITH_VALIDATORS =
-  /CreateInput|CreateWithout|CreateMany|UpdateInput|UpdateWithout|UpdateMany/;
+	/CreateInput|CreateWithout|CreateMany|UpdateInput|UpdateWithout|UpdateMany/;
 
 export const PRISMA_FUNCTION_TYPES_WITH_VALIDATORS_WHERE_UNIQUE =
-  /CreateInput|CreateWithout|CreateMany|UpdateInput|UpdateWithout|UpdateMany|WhereUnique/;
+	/CreateInput|CreateWithout|CreateMany|UpdateInput|UpdateWithout|UpdateMany|WhereUnique/;
 
 // IMPORT STATEMENT
 // ----------------------------------------
@@ -28,4 +28,4 @@ export const PRISMA_FUNCTION_TYPES_WITH_VALIDATORS_WHERE_UNIQUE =
  *   @deprecated
  */
 export const IMPORT_STATEMENT_REGEX_PATTERN_ENHANCED =
-  /@zod(\.(?<type>[\w]+))?(\.import\(\[(?<imports>[\w "'${}/,;.*-]+)\]\))?(\.refine\((?<refine>[\w\W]+)\))?/;
+	/@zod(\.(?<type>[\w]+))?(\.import\(\[(?<imports>[\w "'${}/,;.*-]+)\]\))?(\.refine\((?<refine>[\w\W]+)\))?/;

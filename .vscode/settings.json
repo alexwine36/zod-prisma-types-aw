@@ -1,3 +1,3 @@
 {
-    "typescript.tsdk": "./packages/generator/node_modules/typescript/lib",
+	"typescript.tsdk": "./packages/generator/node_modules/typescript/lib"
 }

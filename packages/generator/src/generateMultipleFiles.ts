@@ -1,31 +1,31 @@
-import { FileWriter } from './classes';
+import { FileWriter } from "./classes";
 import {
-  writeArgTypeFiles,
-  writeInputTypeFiles,
-  writeModelFiles,
-} from './functions';
-import { CreateOptions } from './types';
+	writeArgTypeFiles,
+	writeInputTypeFiles,
+	writeModelFiles,
+} from "./functions";
+import type { CreateOptions } from "./types";
 
 export const generateMultipleFiles = ({ dmmf, path }: CreateOptions) => {
-  const { createModelTypes, createInputTypes, writeBarrelFiles } =
-    dmmf.generatorConfig;
+	const { createModelTypes, createInputTypes, writeBarrelFiles } =
+		dmmf.generatorConfig;
 
-  // Create the index file
-  if (writeBarrelFiles) {
-    new FileWriter().createFile(`${path}/index.ts`, ({ writeExport }) => {
-      if (createModelTypes) {
-        writeExport('*', './modelSchema');
-      }
+	// Create the index file
+	if (writeBarrelFiles) {
+		new FileWriter().createFile(`${path}/index.ts`, ({ writeExport }) => {
+			if (createModelTypes) {
+				writeExport("*", "./modelSchema");
+			}
 
-      writeExport('*', `./${dmmf.generatorConfig.inputTypePath}`);
+			writeExport("*", `./${dmmf.generatorConfig.inputTypePath}`);
 
-      if (createInputTypes) {
-        writeExport('*', `./${dmmf.generatorConfig.outputTypePath}`);
-      }
-    });
-  }
+			if (createInputTypes) {
+				writeExport("*", `./${dmmf.generatorConfig.outputTypePath}`);
+			}
+		});
+	}
 
-  writeModelFiles({ path, dmmf });
-  writeInputTypeFiles({ path, dmmf });
-  writeArgTypeFiles({ path, dmmf });
+	writeModelFiles({ path, dmmf });
+	writeInputTypeFiles({ path, dmmf });
+	writeArgTypeFiles({ path, dmmf });
 };

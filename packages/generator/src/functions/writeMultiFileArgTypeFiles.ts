@@ -1,90 +1,90 @@
-import { FileWriter } from '../classes';
-import { CreateFiles } from '../types';
+import { FileWriter } from "../classes";
+import type { CreateFiles } from "../types";
 import {
-  writeArgs,
-  writeCountArgs,
-  writeCountSelect,
-  writeOutputObjectType,
-} from './contentWriters';
+	writeArgs,
+	writeCountArgs,
+	writeCountSelect,
+	writeOutputObjectType,
+} from "./contentWriters";
 
 /////////////////////////////////////////////////
 // FUNCTION
 /////////////////////////////////////////////////
 
 export const writeArgTypeFiles: CreateFiles = ({ path, dmmf }) => {
-  if (!dmmf.generatorConfig.createInputTypes) return;
+	if (!dmmf.generatorConfig.createInputTypes) return;
 
-  const { outputTypePath, writeBarrelFiles } = dmmf.generatorConfig;
+	const { outputTypePath, writeBarrelFiles } = dmmf.generatorConfig;
 
-  // WRITE INDEX FILE
-  // ------------------------------------------------------------
+	// WRITE INDEX FILE
+	// ------------------------------------------------------------
 
-  const indexFileWriter = new FileWriter();
+	const indexFileWriter = new FileWriter();
 
-  const folderPath = indexFileWriter.createPath(`${path}/${outputTypePath}`);
+	const folderPath = indexFileWriter.createPath(`${path}/${outputTypePath}`);
 
-  if (folderPath) {
-    if (writeBarrelFiles) {
-      indexFileWriter.createFile(
-        `${folderPath}/index.ts`,
-        ({ writeExport }) => {
-          const writeExportSet = new Set<string>();
+	if (folderPath) {
+		if (writeBarrelFiles) {
+			indexFileWriter.createFile(
+				`${folderPath}/index.ts`,
+				({ writeExport }) => {
+					const writeExportSet = new Set<string>();
 
-          dmmf.schema.outputObjectTypes.model.forEach((model) => {
-            if (model.hasRelationField()) {
-              writeExportSet.add(`${model.name}ArgsSchema`);
-            }
-          });
+					dmmf.schema.outputObjectTypes.model.forEach((model) => {
+						if (model.hasRelationField()) {
+							writeExportSet.add(`${model.name}ArgsSchema`);
+						}
+					});
 
-          dmmf.schema.outputObjectTypes.argTypes.forEach((outputType) => {
-            outputType.prismaActionFields.forEach((field) => {
-              writeExportSet.add(`${field.argName}Schema`);
-            });
-          });
+					dmmf.schema.outputObjectTypes.argTypes.forEach((outputType) => {
+						outputType.prismaActionFields.forEach((field) => {
+							writeExportSet.add(`${field.argName}Schema`);
+						});
+					});
 
-          writeExportSet.forEach((exportName) => {
-            writeExport(`{ ${exportName} }`, `./${exportName}`);
-          });
-        },
-      );
-    }
+					writeExportSet.forEach((exportName) => {
+						writeExport(`{ ${exportName} }`, `./${exportName}`);
+					});
+				},
+			);
+		}
 
-    ////////////////////////////////////////////////////
-    // INCLUDE SELECT ARGS
-    ////////////////////////////////////////////////////
+		////////////////////////////////////////////////////
+		// INCLUDE SELECT ARGS
+		////////////////////////////////////////////////////
 
-    dmmf.schema.outputObjectTypes.model.forEach((model) => {
-      if (model.writeIncludeArgs()) {
-        new FileWriter().createFile(
-          `${folderPath}/${model.name}ArgsSchema.ts`,
-          (fileWriter) => writeArgs({ fileWriter, dmmf }, model),
-        );
-      }
+		dmmf.schema.outputObjectTypes.model.forEach((model) => {
+			if (model.writeIncludeArgs()) {
+				new FileWriter().createFile(
+					`${folderPath}/${model.name}ArgsSchema.ts`,
+					(fileWriter) => writeArgs({ fileWriter, dmmf }, model),
+				);
+			}
 
-      if (model.writeCountArgs()) {
-        new FileWriter().createFile(
-          `${folderPath}/${model.name}CountOutputTypeArgsSchema.ts`,
-          (fileWriter) => writeCountArgs({ fileWriter, dmmf }, model),
-        );
+			if (model.writeCountArgs()) {
+				new FileWriter().createFile(
+					`${folderPath}/${model.name}CountOutputTypeArgsSchema.ts`,
+					(fileWriter) => writeCountArgs({ fileWriter, dmmf }, model),
+				);
 
-        new FileWriter().createFile(
-          `${folderPath}/${model.name}CountOutputTypeSelectSchema.ts`,
-          (fileWriter) => writeCountSelect({ fileWriter, dmmf }, model),
-        );
-      }
-    });
+				new FileWriter().createFile(
+					`${folderPath}/${model.name}CountOutputTypeSelectSchema.ts`,
+					(fileWriter) => writeCountSelect({ fileWriter, dmmf }, model),
+				);
+			}
+		});
 
-    ////////////////////////////////////////////////////
-    // ARG SCHEMAS
-    ////////////////////////////////////////////////////
+		////////////////////////////////////////////////////
+		// ARG SCHEMAS
+		////////////////////////////////////////////////////
 
-    dmmf.schema.outputObjectTypes.argTypes.forEach((outputType) => {
-      outputType.prismaActionFields.forEach((field) => {
-        new FileWriter().createFile(
-          `${folderPath}/${field.argName}Schema.ts`,
-          (fileWriter) => writeOutputObjectType({ fileWriter, dmmf }, field),
-        );
-      });
-    });
-  }
+		dmmf.schema.outputObjectTypes.argTypes.forEach((outputType) => {
+			outputType.prismaActionFields.forEach((field) => {
+				new FileWriter().createFile(
+					`${folderPath}/${field.argName}Schema.ts`,
+					(fileWriter) => writeOutputObjectType({ fileWriter, dmmf }, field),
+				);
+			});
+		});
+	}
 };

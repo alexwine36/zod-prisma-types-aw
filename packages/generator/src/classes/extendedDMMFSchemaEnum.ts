@@ -1,33 +1,33 @@
-import type DMMF from '@prisma/dmmf';
-import type { ReadonlyDeep } from '@prisma/dmmf/dist/util';
+import type DMMF from "@prisma/dmmf";
+import type { ReadonlyDeep } from "@prisma/dmmf/dist/util";
 
-import { GeneratorConfig } from '../schemas';
-import { FormattedNames } from './formattedNames';
+import type { GeneratorConfig } from "../schemas";
+import { FormattedNames } from "./formattedNames";
 
 /////////////////////////////////////////////////
 // CLASS
 /////////////////////////////////////////////////
 
 export class ExtendedDMMFSchemaEnum
-  extends FormattedNames
-  implements DMMF.SchemaEnum
+	extends FormattedNames
+	implements DMMF.SchemaEnum
 {
-  readonly name: DMMF.SchemaEnum['name'];
-  readonly values: DMMF.SchemaEnum['values'];
-  readonly useNativeEnum: boolean;
+	readonly name: DMMF.SchemaEnum["name"];
+	readonly values: DMMF.SchemaEnum["values"];
+	readonly useNativeEnum: boolean;
 
-  constructor(
-    readonly generatorConfig: GeneratorConfig,
-    enumType: ReadonlyDeep<DMMF.SchemaEnum>,
-  ) {
-    super(enumType.name);
-    this.generatorConfig = generatorConfig;
-    this.name = enumType.name;
-    this.values = enumType.values;
-    this.useNativeEnum = this._setUseNativeEnum();
-  }
+	constructor(
+		readonly generatorConfig: GeneratorConfig,
+		enumType: ReadonlyDeep<DMMF.SchemaEnum>,
+	) {
+		super(enumType.name);
+		this.generatorConfig = generatorConfig;
+		this.name = enumType.name;
+		this.values = enumType.values;
+		this.useNativeEnum = this._setUseNativeEnum();
+	}
 
-  private _setUseNativeEnum() {
-    return !this.name.includes('JsonNullValue');
-  }
+	private _setUseNativeEnum() {
+		return !this.name.includes("JsonNullValue");
+	}
 }

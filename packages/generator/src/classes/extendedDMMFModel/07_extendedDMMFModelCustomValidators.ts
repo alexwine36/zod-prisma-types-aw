@@ -1,33 +1,33 @@
-import type DMMF from '@prisma/dmmf';
-import { GeneratorConfig } from '../../schemas';
-import { ExtendedDMMFModelCustomErrors } from './06_extendedDMMFModelCustomErrors';
+import type DMMF from "@prisma/dmmf";
+import type { GeneratorConfig } from "../../schemas";
+import { ExtendedDMMFModelCustomErrors } from "./06_extendedDMMFModelCustomErrors";
 
 /////////////////////////////////////////////////
 // CLASS
 /////////////////////////////////////////////////
 
 export class ExtendedDMMFModelCustomValidators extends ExtendedDMMFModelCustomErrors {
-  readonly zodCustomValidators?: string[];
+	readonly zodCustomValidators?: string[];
 
-  constructor(generatorConfig: GeneratorConfig, model: DMMF.Model) {
-    super(generatorConfig, model);
+	constructor(generatorConfig: GeneratorConfig, model: DMMF.Model) {
+		super(generatorConfig, model);
 
-    this.zodCustomValidators = this._setZodCustomValidators();
-  }
+		this.zodCustomValidators = this._setZodCustomValidators();
+	}
 
-  private _setZodCustomValidators() {
-    if (!this._validatorList) return;
+	private _setZodCustomValidators() {
+		if (!this._validatorList) return;
 
-    const filterdValidatorList = this._validatorList
-      .filter(
-        (elem) => !(elem.includes('.error(') || elem.includes('.import(')),
-      )
-      .sort((a, b) => {
-        if (a === '.strict()') return -1;
-        if (b === '.strict()') return 1;
-        return 0; // Keep the relative order of other items unchanged
-      });
+		const filterdValidatorList = this._validatorList
+			.filter(
+				(elem) => !(elem.includes(".error(") || elem.includes(".import(")),
+			)
+			.sort((a, b) => {
+				if (a === ".strict()") return -1;
+				if (b === ".strict()") return 1;
+				return 0; // Keep the relative order of other items unchanged
+			});
 
-    return filterdValidatorList;
-  }
+		return filterdValidatorList;
+	}
 }
