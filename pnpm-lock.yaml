@@ -92,8 +92,8 @@ importers:
         specifier: ^3.1.1
         version: 3.1.1(@types/node@22.14.0)
       zod:
-        specifier: 3.24.2
-        version: 3.24.2
+        specifier: ^3.25.0
+        version: 3.25.76
       zod-prisma-types-aw:
         specifier: workspace:*
         version: link:../generator
@@ -1722,8 +1722,8 @@ packages:
     resolution: {integrity: sha512-Ux4ygGWsu2c7isFWe8Yu1YluJmqVhxqK2cLXNQA5AcC3QfbGNpM7fu0Y8b/z16pXLnFxZYvWhd3fhBY9DLmC6Q==}
     engines: {node: '>=6'}
 
-  zod@3.24.2:
-    resolution: {integrity: sha512-lY7CDW43ECgW9u1TcT3IoXHflywfVqDYze4waEz812jR/bZ8FHDsl7pFQoSZTz5N+2NqRXs8GBwnAwo3ZNxqhQ==}
+  zod@3.25.76:
+    resolution: {integrity: sha512-gzUt/qt81nXsFGKIFcC3YnfEAx5NkunCfnDlvuBSSFS02bcXu4Lmea0AFIUwbLWxWPx3d9p8S5QoaujKcNQxcQ==}
 
   zod@4.1.11:
     resolution: {integrity: sha512-WPsqwxITS2tzx1bzhIKsEs19ABD5vmCVa4xBo2tq/SrV4RNZtfws1EnCWQXM6yh8bD08a1idvkB5MZSBiZsjwg==}
@@ -3191,6 +3191,6 @@ snapshots:
 
   yn@3.1.1: {}
 
-  zod@3.24.2: {}
+  zod@3.25.76: {}
 
   zod@4.1.11: {}

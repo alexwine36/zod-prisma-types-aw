@@ -27,6 +27,7 @@
 	},
 	"scripts": {
 		"test": "vitest run",
+		"test:watch": "vitest",
 		"build": "tsc",
 		"clean": "git clean -xdf node_modules dist .turbo",
 		"typecheck": "tsc --noEmit"

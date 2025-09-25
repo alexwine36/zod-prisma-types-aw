@@ -3,7 +3,6 @@ import type {
 	PrismaAction,
 	PrismaActionPrimitives,
 	PrismaScalarType,
-	ZodCustomErrorKey,
 	ZodPrismaScalarType,
 	ZodScalarType,
 	ZodValidatorType,
@@ -66,18 +65,19 @@ export const PRISMA_TO_ZOD_TYPE_MAP: Record<
 	Float: "number",
 };
 
-/////////////////////////////////////////////////
-// ZOD VALID ERROR KEYS
-/////////////////////////////////////////////////
+// /////////////////////////////////////////////////
+// // ZOD VALID ERROR KEYS
+// /////////////////////////////////////////////////
 
-/**
- * @deprecated
- */
-export const ZOD_VALID_ERROR_KEYS: ZodCustomErrorKey[] = [
-	"invalid_type_error",
-	"required_error",
-	"description",
-];
+// /**
+//  * @deprecated
+//  */
+// export const ZOD_VALID_ERROR_KEYS: ZodCustomErrorKey[] = [
+// 	"invalid_type_error",
+// 	"required_error",
+// 	"error",
+// 	"description",
+// ];
 
 /////////////////////////////////////////////
 // PRISMA ACTION MAP
