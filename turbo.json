@@ -8,12 +8,15 @@
 		"//#lint": {},
 		"//#lint:ci": {},
 		"gen:prisma": {
-			"outputs": ["prisma/generated/**"]
+			"outputs": ["prisma/generated/**"],
+			"dependsOn": ["^build"]
 		},
 		"test": {
 			"dependsOn": ["^build", "gen:prisma"]
 		},
 		"clean": {},
-		"typecheck": {}
+		"typecheck": {
+			"dependsOn": ["gen:prisma"]
+		}
 	}
 }

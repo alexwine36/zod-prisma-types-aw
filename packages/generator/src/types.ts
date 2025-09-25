@@ -40,6 +40,7 @@ export type PrismaScalarTypeMap<T> = Record<PrismaScalarType, T>;
 export type ZodCustomErrorKey =
 	| "invalid_type_error"
 	| "required_error"
+	| "error"
 	| "description";
 
 export type ZodPrimitiveType =

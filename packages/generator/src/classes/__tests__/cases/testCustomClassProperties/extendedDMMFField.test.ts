@@ -68,9 +68,7 @@ describe("testSimpleModelNoValidators", async () => {
 		expect(fields[0]?._errorLocation).toBe(
 			"[Error Location]: Model: 'MyPrismaScalarsType', Field: 'id'.",
 		);
-		expect(fields[0].zodCustomErrors).toBe(
-			'{ invalid_type_error: "invalid type error" }',
-		);
+		expect(fields[0].zodCustomErrors).toBe('{ error: "invalid type error" }');
 		expect(fields[0].zodValidatorString).toBe(".cuid()");
 		expect(fields[0].zodCustomValidatorString).toBeUndefined();
 		expect(fields[0].clearedDocumentation).toBeUndefined();

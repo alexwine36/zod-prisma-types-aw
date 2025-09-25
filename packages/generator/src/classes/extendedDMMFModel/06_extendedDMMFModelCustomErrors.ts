@@ -1,6 +1,9 @@
 import type DMMF from "@prisma/dmmf";
 import type { GeneratorConfig } from "../../schemas";
-import { validateCustomError } from "../../utils/validateCustomError";
+import {
+	convertToZodV4Error,
+	validateCustomError,
+} from "../../utils/validateCustomError";
 import { ExtendedDMMFModelImportStatement } from "./05_extendedDMMFModelImportStatement";
 
 /////////////////////////////////////////////////
@@ -37,6 +40,10 @@ export class ExtendedDMMFModelCustomErrors extends ExtendedDMMFModelImportStatem
 
 	private _setZodCustomErrors() {
 		if (!this._validatorCustomError) return;
-		return validateCustomError(this._validatorCustomError, this._errorLocation);
+		const validatedError = validateCustomError(
+			this._validatorCustomError,
+			this._errorLocation,
+		);
+		return convertToZodV4Error(validatedError);
 	}
 }

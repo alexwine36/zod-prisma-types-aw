@@ -28,7 +28,7 @@ describe("test string validators", async () => {
 
 		it(`should add customTypeError to field "${fields.customTypeError.name}"`, () => {
 			expect(fields.customTypeError.zodCustomErrors).toBe(
-				'{ invalid_type_error: "my message", description: "my description" }',
+				'{ error: "my description" }',
 			);
 		});
 
@@ -108,7 +108,7 @@ describe("test string validators", async () => {
 
 		it(`should add customTypeError to field "${fields.customTypeError.name}"`, () => {
 			expect(fields.customTypeError.zodCustomErrors).toBe(
-				'{ invalid_type_error: "my message", description: "my description" }',
+				'{ error: "my description" }',
 			);
 		});
 
