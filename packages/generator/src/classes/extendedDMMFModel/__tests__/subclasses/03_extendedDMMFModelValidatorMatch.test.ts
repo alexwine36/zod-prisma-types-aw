@@ -29,7 +29,7 @@ export function testExtendedDMMFFieldValidatorMatch<
 		it("should test the regex with a matching string", () => {
 			expect(
 				IMPORT_STATEMENT_REGEX_PATTERN.test(
-					'@zod.import(["import { myFunction } from "../../../../utils/myFunction";"]).refine(v => v.title.length > 0).transform(...some stuff).strict().refine((data) => { return true }, { message: "error" })',
+					'@zod.import(["import { myFunction } from "../../../../utils/myFunction";"]).refine(v => v.title.length > 0).transform(...some stuff).refine((data) => { return true }, { message: "error" })',
 				),
 			).toBe(true);
 		});
@@ -52,12 +52,12 @@ export function testExtendedDMMFFieldValidatorMatch<
 		it(`should load a class with docs and validator`, async () => {
 			const model = getModel({
 				documentation:
-					'some text in docs before @zod.import(["import { myFunction } from "../../../../utils/myFunction";"]).refine(v => v.title.length > 0).transform(...some stuff).strict().refine((data) => { return true }, { message: "error" }) some text after',
+					'some text in docs before @zod.import(["import { myFunction } from "../../../../utils/myFunction";"]).refine(v => v.title.length > 0).transform(...some stuff).refine((data) => { return true }, { message: "error" }) some text after',
 			});
 			const match = model?._validatorMatch;
 
 			expect(match?.groups?.validatorPattern).toBe(
-				'.import(["import { myFunction } from "../../../../utils/myFunction";"]).refine(v => v.title.length > 0).transform(...some stuff).strict().refine((data) => { return true }, { message: "error" })',
+				'.import(["import { myFunction } from "../../../../utils/myFunction";"]).refine(v => v.title.length > 0).transform(...some stuff).refine((data) => { return true }, { message: "error" })',
 			);
 		});
 	});

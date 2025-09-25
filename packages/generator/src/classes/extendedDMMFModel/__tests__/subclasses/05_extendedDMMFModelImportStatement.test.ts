@@ -87,7 +87,7 @@ export function testExtendedDMMFFieldImportStatement<
 			expect(() =>
 				getModel({
 					documentation:
-						'some text in docs before @zod.import(["import { myFunction } from "+../../../../utils/myFunction";"]).refine(v => v.title.length > 0).transform(...some stuff).strict() some text after',
+						'some text in docs before @zod.import(["import { myFunction } from "+../../../../utils/myFunction";"]).refine(v => v.title.length > 0).transform(...some stuff) some text after',
 				}),
 			).toThrowError(
 				`[@zod generator error]: import statement is not valid. Check for unusal characters. [Error Location]: Model: 'User'`,

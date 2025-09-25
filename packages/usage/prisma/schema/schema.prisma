@@ -349,7 +349,7 @@ model JapaneseChars {
 // MODEL VALIDATION
 // -----------------------------------------------
 
-/// @zod.import(["import { myFunction } from "../../../../utils/myFunction";"]).error({ required_error: "error", invalid_type_error: "error" , description: "error"}).refine((val) => myFunction(val), { message: 'Is not valid' }).strict()
+/// @zod.import(["import { myFunction } from "../../../../utils/myFunction";"]).error({ required_error: "error", invalid_type_error: "error" , description: "error"}).refine((val) => myFunction(val), { message: 'Is not valid' })
 model ModelWithOptions {
   id     Int    @id @default(autoincrement())
   string String

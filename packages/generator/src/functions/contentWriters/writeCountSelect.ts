@@ -40,7 +40,7 @@ export const writeCountSelect = (
 				}
 			});
 		})
-		.write(`).strict()`)
+		.write(`)`)
 		.conditionalWrite(useExactOptionalPropertyTypes, ".transform(ru)")
 		.write(`;`);
 

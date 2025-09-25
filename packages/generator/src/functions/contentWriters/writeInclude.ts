@@ -53,7 +53,7 @@ export const writeInclude = (
 				}
 			});
 		})
-		.write(`).strict()`)
+		.write(`)`)
 		.conditionalWrite(useExactOptionalPropertyTypes, ".transform(ru)")
 		.write(`;`);
 
