@@ -2,13 +2,14 @@
 	"name": "usage-new",
 	"version": "1.0.0",
 	"description": "",
+	"private": true,
 	"main": "index.js",
 	"scripts": {
 		"test": "vitest run --no-file-parallelism",
 		"gen:prisma": "prisma generate --schema prisma/schema",
 		"run:dev": "ts-node-dev app/client.ts",
 		"tsc": "tsc",
-		"clean": "git clean -xdf node_modules prisma/generated"
+		"clean": "git clean -xdf node_modules prisma/generated .turbo"
 	},
 	"keywords": [],
 	"type": "module",
@@ -37,6 +38,6 @@
 		"validator": "^13.15.0",
 		"vitest": "^3.1.1",
 		"zod": "4.1.11",
-		"zod-prisma-types": "workspace:*"
+		"zod-prisma-types-aw": "workspace:*"
 	}
 }

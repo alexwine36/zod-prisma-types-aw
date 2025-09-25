@@ -1,0 +1,19 @@
+name: Typecheck
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+concurrency: 
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  static:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: ./.github/actions/ci-setup
+      - run: pnpm static

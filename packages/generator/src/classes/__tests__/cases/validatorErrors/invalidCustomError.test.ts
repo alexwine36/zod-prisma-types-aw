@@ -1,6 +1,6 @@
 import { expect, it } from "vitest";
 
-import { ExtendedDMMF } from "../../../ExtendedDMMF";
+import { ExtendedDMMF } from "../../../extendedDMMF";
 import { loadDMMF } from "../../utils/loadDMMF";
 
 it("should throw a custom error key is not valid", async () => {

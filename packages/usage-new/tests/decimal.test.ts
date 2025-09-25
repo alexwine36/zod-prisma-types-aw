@@ -1,3 +1,4 @@
+/** biome-ignore-all lint/suspicious/noExportsInTest: Fine for tests */
 import Decimal from "decimal.js";
 import { afterAll, beforeAll, expect, it } from "vitest";
 import { Prisma } from "../prisma/generated/client";
@@ -9,9 +10,9 @@ import {
 	isValidDecimalInput,
 } from "../prisma/generated/zod";
 import { DECIMAL_STRING_REGEX } from "../prisma/generated/zod/inputTypeSchemas/isValidDecimalInput";
+import { PORT } from "../utils/consts";
 import { client } from "./trpc/client";
 import { getServer } from "./trpc/server";
-import { PORT } from "../utils/consts";
 
 // const prismaClient = new PrismaClient();
 
@@ -19,7 +20,6 @@ import { PORT } from "../utils/consts";
 // CONSTANTS
 ///////////////////////////////////////
 
-// biome-ignore lint/suspicious/noExportsInTest: <explanation>
 export const decimalJsLikeOne: DecimalJsLike = {
 	d: [1230000], // array of digits
 	e: -1, // exponent
@@ -27,7 +27,6 @@ export const decimalJsLikeOne: DecimalJsLike = {
 	toFixed: () => "1230000",
 };
 
-// biome-ignore lint/suspicious/noExportsInTest: <explanation>
 export const decimalJsLikeTwo: DecimalJsLike = {
 	d: [1234], // array of digits
 	e: -1, // exponent

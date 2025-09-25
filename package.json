@@ -1,14 +1,20 @@
 {
 	"name": "zod-prisma-types-aw-monorepo",
 	"version": "1.0.0",
+	"private": true,
 	"description": "",
 	"main": "index.js",
 	"scripts": {
 		"build": "turbo run build",
 		"test": "turbo run test",
-		"lint": "biome check --write --unsafe --log-level=error",
-		"lint:ci": "biome lint --log-level=error",
-		"clean": "turbo run clean"
+		"lint": "biome check --log-level=error",
+		"lint:ci": "biome check --diagnostic-level=error",
+		"clean": "turbo run clean",
+		"change": "changeset",
+		"static": "turbo run lint:ci test typecheck",
+		"typecheck": "turbo run typecheck",
+		"format": "biome check --write --diagnostic-level=error",
+		"release": "pnpm build && pnpm changeset publish"
 	},
 	"keywords": [],
 	"author": "",
@@ -16,8 +22,9 @@
 	"dependencies": {
 		"turbo": "^2.5.8"
 	},
-	"packageManager": "pnpm@9.14.2",
+	"packageManager": "pnpm@10.11.0",
 	"devDependencies": {
-		"@biomejs/biome": "2.2.4"
+		"@biomejs/biome": "2.2.4",
+		"@changesets/cli": "^2.29.7"
 	}
 }

@@ -1,3 +1,4 @@
+import { PrismaPg } from "@prisma/adapter-pg";
 import { afterAll, beforeAll, describe, expect, it } from "vitest";
 import {
 	type JsonModel as JsonModelPrisma,
@@ -12,15 +13,14 @@ import {
 	JsonValueSchema,
 	NullableJsonNullValueInputSchema,
 } from "../prisma/generated/zod";
+import { PORT } from "../utils/consts";
 import { client } from "./trpc/client";
 import { getServer } from "./trpc/server";
-import { PrismaPg } from '@prisma/adapter-pg'
-import { PORT } from "../utils/consts";
 
 ///////////////////////////////////////
 // JSON SCHEMA REFINED
 ///////////////////////////////////////
-const adapter = new PrismaPg({ connectionString: process.env.DATABASE_URL })
+const adapter = new PrismaPg({ connectionString: process.env.DATABASE_URL });
 const _prismaClient = new PrismaClient({ adapter });
 
 ///////////////////////////////////////

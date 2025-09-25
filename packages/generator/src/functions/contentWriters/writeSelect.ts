@@ -31,7 +31,7 @@ export const writeSelect = (
 		.write(`z.ZodType<Prisma.${model.name}Select> = `)
 		.write(`z.object(`)
 		.inlineBlock(() => {
-			model.fields.forEach((field) => {
+			model.fields.map((field) => {
 				if (field.isEnumOutputType()) {
 					return writer
 						.write(`${field.name}: `)

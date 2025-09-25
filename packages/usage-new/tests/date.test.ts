@@ -1,8 +1,8 @@
 import { afterAll, beforeAll, expect, it } from "vitest";
 import { DateModelSchema } from "../prisma/generated/zod";
+import { PORT } from "../utils/consts";
 import { client } from "./trpc/client";
 import { getServer } from "./trpc/server";
-import { PORT } from "../utils/consts";
 
 ///////////////////////////////////////
 // SETUP
