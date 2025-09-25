@@ -19,7 +19,6 @@ import { getServer } from "./trpc/server";
 // CONSTANTS
 ///////////////////////////////////////
 
-
 export const decimalJsLikeOne: DecimalJsLike = {
 	d: [1230000], // array of digits
 	e: -1, // exponent
