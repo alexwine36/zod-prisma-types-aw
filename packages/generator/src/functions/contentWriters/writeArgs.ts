@@ -63,7 +63,7 @@ export const writeArgs = (
 					`include: z.lazy(() => ${model.name}IncludeSchema).optional(),`,
 				);
 		})
-		.write(`).strict()`)
+		.write(`)`)
 		.conditionalWrite(useExactOptionalPropertyTypes, ".transform(ru)")
 		.write(`;`);
 

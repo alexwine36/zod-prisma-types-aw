@@ -735,8 +735,7 @@ export const DecimalModelCreateInputSchema: z.ZodType<Prisma.DecimalModelCreateI
         .refine((v) => isValidDecimalInput(v), { message: 'Must be a Decimal' })
         .optional()
         .nullable(),
-    })
-    .strict();
+    });
 ```
 
 The model schema only reflects the type of the result of a database query. Therefor this type lacks all the further validation that is used in the `create` and `update` methods. So if you want to validate the input in the `create` and `update` methods you should use the input schemas instead of the model schemas or build your own custom schema using the helpers from above.
@@ -1122,8 +1121,7 @@ export const MyModelCreateInputSchema: z.ZodType<
     string: z.string().min(4).max(10).optional().nullable(),
     // omitted: omitField: z.string().optional().nullable(),
     // omitted: omitRequired: z.string(),
-  })
-  .strict();
+  });
 
 export const MyModelUncheckedCreateInputSchema: z.ZodType<
   Omit<
@@ -1136,8 +1134,7 @@ export const MyModelUncheckedCreateInputSchema: z.ZodType<
     string: z.string().min(4).max(10).optional().nullable(),
     // omitted: omitField: z.string().optional().nullable(),
     // omitted: omitRequired: z.string(),
-  })
-  .strict();
+  });
 
 export const MyModelUpdateInputSchema: z.ZodType<
   Omit<PrismaClient.Prisma.MyModelUpdateInput, 'omitField' | 'omitRequired'>
@@ -1152,8 +1149,7 @@ export const MyModelUpdateInputSchema: z.ZodType<
       .nullable(),
     // omitted: omitField: z.union([ z.string(),z.lazy(() => NullableStringFieldUpdateOperationsInputSchema) ]).optional().nullable(),
     // omitted: omitRequired: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
-  })
-  .strict();
+  });
 
 // AND SO ON...
 
@@ -1174,8 +1170,7 @@ export const MyModelCreateArgsSchema: z.ZodType<
       MyModelCreateInputSchema,
       MyModelUncheckedCreateInputSchema,
     ]),
-  })
-  .strict();
+  });
 ```
 
 > When a `required` field is omitted the field needs to be added manually in the respective prisma function like `create`, `update`, `createMany` and so on. Otherwise, Typescript would complain.
@@ -1258,7 +1253,7 @@ To add custom validators to the prisma `model` you can use the `@zod.` key on th
 You can also add custom error messages to the object and add custom imports.
 
 ```prisma
-/// @zod.import(["import { myFunction } from "../../../../utils/myFunction";"]).error({ required_error: "error", invalid_type_error: "error" , description: "error"}).refine((data) => { return true }, { message: "error" }).strict()
+/// @zod.import(["import { myFunction } from "../../../../utils/myFunction";"]).error({ required_error: "error", invalid_type_error: "error" , description: "error"}).refine((data) => { return true }, { message: "error" })
 model ModelWithOptions {
   id     Int    @id @default(autoincrement())
   string String
@@ -1291,7 +1286,7 @@ export type ModelWithOptions = z.infer<typeof ModelWithOptionsSchema>;
 /////////////////////////////////////////
 
 export const ModelWithOptionsCustomValidatorsSchema =
-  ModelWithOptionsSchema.strict().refine(
+  ModelWithOptionsSchema.refine(
     (data) => {
       return true;
     },
@@ -1363,8 +1358,7 @@ export const ModelWithFieldLevelImportCreateInputSchema: z.ZodType<Prisma.ModelW
       myField: z
         .string()
         .refine((val) => myFunction(val), { message: 'Is not valid' }),
-    })
-    .strict();
+    });
 ```
 
 With this approach you can use
@@ -1416,7 +1410,7 @@ export const MyModelSchema = z.object(
 To add custom validators to the prisma `model` you can use the `@zod.` key on the model. On this key you can use all [`object`](https://zod.dev/?id=objects) and [`schema`](https://zod.dev/?id=schema-methods) validators that are mentioned in the [`zod-docs`](https://zod.dev/?id=schema-methods).
 
 ```prisma
-/// @zod.refine((data) => { return true }, { message: "error" }).strict()
+/// @zod.refine((data) => { return true }, { message: "error" })
 model ModelWithOptions {
   id     Int    @id @default(autoincrement())
   string String
@@ -1442,7 +1436,7 @@ export type ModelWithOptions = z.infer<typeof ModelWithOptionsSchema>;
 /////////////////////////////////////////
 
 export const ModelWithOptionsCustomValidatorsSchema =
-  ModelWithOptionsSchema.strict().refine(
+  ModelWithOptionsSchema.refine(
     (data) => {
       return true;
     },

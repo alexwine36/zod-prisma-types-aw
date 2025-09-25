@@ -29,7 +29,7 @@ export function testExtendedDMMFFieldValidatorPattern<
 		it(`should load a class with docs and validator`, async () => {
 			const model = getModel({
 				documentation:
-					'some text in docs before @zod.import(["import { myFunction } from "../../../../utils/myFunction";"]).error({ invalid_type_error: "some stuff" }).refine(v => v.title.length > 0).transform(...some stuff).strict() some text after',
+					'some text in docs before @zod.import(["import { myFunction } from "../../../../utils/myFunction";"]).error({ invalid_type_error: "some stuff" }).refine(v => v.title.length > 0).transform(...some stuff) some text after',
 			});
 
 			expect(model?._validatorList).toEqual([
@@ -37,13 +37,12 @@ export function testExtendedDMMFFieldValidatorPattern<
 				'.error({ invalid_type_error: "some stuff" })',
 				".refine(v => v.title.length > 0)",
 				".transform(...some stuff)",
-				".strict()",
 			]);
 			expect(model?.clearedDocumentation).toBe(
 				"some text in docs before some text after",
 			);
 			expect(model.documentation).toBe(
-				'some text in docs before @zod.import(["import { myFunction } from "../../../../utils/myFunction";"]).error({ invalid_type_error: "some stuff" }).refine(v => v.title.length > 0).transform(...some stuff).strict() some text after',
+				'some text in docs before @zod.import(["import { myFunction } from "../../../../utils/myFunction";"]).error({ invalid_type_error: "some stuff" }).refine(v => v.title.length > 0).transform(...some stuff) some text after',
 			);
 		});
 
@@ -51,7 +50,7 @@ export function testExtendedDMMFFieldValidatorPattern<
 			expect(() =>
 				getModel({
 					documentation:
-						'some text in docs before @zod.improt(["import { myFunction } from "../../../../utils/myFunction";"]).refine(v => v.title.length > 0).transform(...some stuff).strict() some text after',
+						'some text in docs before @zod.improt(["import { myFunction } from "../../../../utils/myFunction";"]).refine(v => v.title.length > 0).transform(...some stuff) some text after',
 				}),
 			).toThrowError(
 				`[@zod generator error]: 'improt' is not valid as validator. [Error Location]: Model: 'User'`,
@@ -91,7 +90,6 @@ export function testExtendedDMMFFieldValidatorPattern<
 				".deepPartial()",
 				".required()",
 				".passthrough()",
-				".strict()",
 				".strip()",
 				".catchall()",
 			];

@@ -23,14 +23,13 @@ export function testExtendedDMMFFieldCustomValidators<
 		});
 
 	describe(`ExtendedDMMFFieldCustomValidators`, () => {
-		it(`should filter error and import from validator list and write rest to zodCustomValidators property with strict at position 0`, async () => {
+		it(`should filter error and import from validator list and write rest to zodCustomValidators property`, async () => {
 			const model = getModel({
 				documentation:
-					'some text in docs before @zod.import(["import { myFunction } from "../../../../utils/myFunction";"]).error({ invalid_type_error: "some stuff" }).refine(v => v.title.length > 0).transform(...some stuff).strict() some text after',
+					'some text in docs before @zod.import(["import { myFunction } from "../../../../utils/myFunction";"]).error({ invalid_type_error: "some stuff" }).refine(v => v.title.length > 0).transform(...some stuff) some text after',
 			});
 
 			expect(model.zodCustomValidators).toEqual([
-				".strict()",
 				".refine(v => v.title.length > 0)",
 				".transform(...some stuff)",
 			]);
@@ -38,7 +37,7 @@ export function testExtendedDMMFFieldCustomValidators<
 				"some text in docs before some text after",
 			);
 			expect(model.documentation).toBe(
-				'some text in docs before @zod.import(["import { myFunction } from "../../../../utils/myFunction";"]).error({ invalid_type_error: "some stuff" }).refine(v => v.title.length > 0).transform(...some stuff).strict() some text after',
+				'some text in docs before @zod.import(["import { myFunction } from "../../../../utils/myFunction";"]).error({ invalid_type_error: "some stuff" }).refine(v => v.title.length > 0).transform(...some stuff) some text after',
 			);
 		});
 

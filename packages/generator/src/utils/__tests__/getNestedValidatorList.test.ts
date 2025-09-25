@@ -53,13 +53,12 @@ describe(`getNestedValidatorList`, () => {
 	it("should return a list of nested validators", () => {
 		expect(
 			getNestedValidatorList(
-				'.import(["import { myFunction } from "../../../../utils/myFunction";"]).refine(v => v.title.length > 0).transform(...some stuff).strict()',
+				'.import(["import { myFunction } from "../../../../utils/myFunction";"]).refine(v => v.title.length > 0).transform(...some stuff)',
 			),
 		).toEqual([
 			'.import(["import { myFunction } from "../../../../utils/myFunction";"])',
 			".refine(v => v.title.length > 0)",
 			".transform(...some stuff)",
-			".strict()",
 		]);
 	});
 
@@ -74,13 +73,12 @@ describe(`getNestedValidatorList`, () => {
 	});
 	it("correctly extracts validators from a complex pattern", () => {
 		const input =
-			'.import(["some path"]).refine(v => v > 0).transform(...args).strict()';
+			'.import(["some path"]).refine(v => v > 0).transform(...args)';
 		const validators = getNestedValidatorList(input);
 		expect(validators).toEqual([
 			'.import(["some path"])',
 			".refine(v => v > 0)",
 			".transform(...args)",
-			".strict()",
 		]);
 	});
 

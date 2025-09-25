@@ -77,7 +77,6 @@ export const writeSelect = (
 
 	writer
 		.write(`)`)
-		.write(`.strict()`)
 		.conditionalWrite(useExactOptionalPropertyTypes, ".transform(ru)")
 		// .write(' as z.ZodType<Prisma.')
 		// .write(`${model.name}Select>`)

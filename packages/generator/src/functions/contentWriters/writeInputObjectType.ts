@@ -206,8 +206,6 @@ export const writeInputObjectType = (
 			});
 		})
 		.write(`)`)
-		.conditionalWrite(!writeExtendedWhereUniqueInput, `.strict()`)
-		.conditionalWrite(writeExtendedWhereUniqueInput, `.strict()`)
 		.conditionalWrite(useExactOptionalPropertyTypes, ".transform(ru)")
 		.conditionalWrite(writeExtendedWhereUniqueInput, `)`)
 		.conditionalWrite(useTypeAssertions, ` as ${type};`)

@@ -50,7 +50,7 @@ export const writeCountArgs = (
 				`select: z.lazy(() => ${model.name}CountOutputTypeSelectSchema).nullish(),`,
 			);
 		})
-		.write(`).strict()`)
+		.write(`)`)
 		.conditionalWrite(useExactOptionalPropertyTypes, ".transform(ru)")
 		.write(`;`);
 

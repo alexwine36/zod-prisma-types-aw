@@ -145,7 +145,6 @@ export const writeOutputObjectType = (
 			});
 		})
 		.write(`)`)
-		.write(`.strict()`)
 		.conditionalWrite(useExactOptionalPropertyTypes, ".transform(ru)")
 		.conditionalWrite(useTypeAssertions, `as ${field.customArgType};`)
 		.conditionalWrite(!useTypeAssertions, `;`);
