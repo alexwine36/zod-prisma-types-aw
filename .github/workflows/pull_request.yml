@@ -13,4 +13,5 @@ jobs:
         with:
           github_token: ${{ secrets.github_token }}
           reporter: github-pr-review
-          fail_level: error
+          level: error
+          biome_flags: "--diagnostic-level=error"
