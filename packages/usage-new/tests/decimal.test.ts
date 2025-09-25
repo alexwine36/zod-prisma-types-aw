@@ -26,7 +26,6 @@ export const decimalJsLikeOne: DecimalJsLike = {
 	toFixed: () => "1230000",
 };
 
-// biome-ignore lint/suspicious/noExportsInTest: <explanation>
 export const decimalJsLikeTwo: DecimalJsLike = {
 	d: [1234], // array of digits
 	e: -1, // exponent
