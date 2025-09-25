@@ -1,6 +1,6 @@
 {
 	"name": "zod-prisma-types-aw",
-	"version": "3.3.1",
+	"version": "3.4.0",
 	"description": "Generates zod schemas from Prisma models with advanced validation",
 	"author": "Alex Wine",
 	"license": "MIT",

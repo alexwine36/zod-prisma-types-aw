@@ -1,5 +1,11 @@
 # zod-prisma-types-aw
 
+## 3.4.0
+
+### Minor Changes
+
+- 7d1d025: Added convertToZodV4Error for fixing issues with custom errors
+
 ## 3.3.1
 
 ### Patch Changes

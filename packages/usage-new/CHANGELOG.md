@@ -1,5 +1,16 @@
 # usage-new
 
+## 1.1.0
+
+### Minor Changes
+
+- 7d1d025: Added convertToZodV4Error for fixing issues with custom errors
+
+### Patch Changes
+
+- Updated dependencies [7d1d025]
+  - zod-prisma-types-aw@3.4.0
+
 ## 1.0.2
 
 ### Patch Changes
