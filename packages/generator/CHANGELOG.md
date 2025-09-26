@@ -1,5 +1,11 @@
 # zod-prisma-types-aw
 
+## 3.6.0
+
+### Minor Changes
+
+- 6b180d0: Updated coerced date type to align with new Zod changes
+
 ## 3.5.0
 
 ### Minor Changes

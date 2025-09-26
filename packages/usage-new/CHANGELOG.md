@@ -1,5 +1,16 @@
 # usage-new
 
+## 1.3.0
+
+### Minor Changes
+
+- 6b180d0: Updated coerced date type to align with new Zod changes
+
+### Patch Changes
+
+- Updated dependencies [6b180d0]
+  - zod-prisma-types-aw@3.6.0
+
 ## 1.2.0
 
 ### Minor Changes
