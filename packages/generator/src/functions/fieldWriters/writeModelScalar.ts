@@ -17,7 +17,7 @@ export const writeScalar = ({
 			)
 			.conditionalWrite(
 				field.generatorConfig.coerceDate,
-				`z.coerce.${field.zodType}(`,
+				`z.coerce.${field.zodType}<Date>(`,
 			)
 			.conditionalWrite(!!field.zodCustomErrors, field.zodCustomErrors!)
 			.write(`)`)

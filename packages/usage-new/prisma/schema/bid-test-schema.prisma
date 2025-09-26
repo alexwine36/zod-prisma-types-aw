@@ -1,0 +1,269 @@
+// ==================== COST ITEMS & PRICING ====================
+
+enum CostType {
+  LABOR
+  MATERIAL
+  EQUIPMENT
+  SUBCONTRACTOR
+  FEE
+
+  OTHER
+}
+
+enum UnitOfMeasure {
+  EACH
+  HOUR
+  DAY
+  WEEK
+  MONTH
+  SQUARE_FOOT
+  SQUARE_METER
+  LINEAR_FOOT
+  LINEAR_METER
+  CUBIC_YARD
+  CUBIC_METER
+  POUND
+  KILOGRAM
+  TON
+  GALLON
+  LITER
+}
+
+// ==================== ESTIMATES ====================
+
+enum EstimateStatus {
+  DRAFT
+  REVIEWING
+  SUBMITTED
+  APPROVED
+  REJECTED
+  EXPIRED
+}
+
+model Estimate {
+  id String @id @default(cuid())
+
+  // Potential fields?
+  //   version  Int        @default(1)
+  //   parentId String? // For versioning - references parent estimate
+  //   parent   Estimate?  @relation("EstimateVersions", fields: [parentId], references: [id])
+  //   versions Estimate[] @relation("EstimateVersions")
+
+  name        String
+  description String?
+  status      EstimateStatus @default(DRAFT)
+
+  // Totals (denormalized for performance)
+  subtotal  Decimal @db.Decimal(12, 2)
+  taxAmount Decimal @default(0) @db.Decimal(12, 2)
+  total     Decimal @db.Decimal(12, 2)
+
+  // Markups
+  overheadPercent Decimal? @db.Decimal(5, 2)
+  profitPercent   Decimal? @db.Decimal(5, 2)
+
+  // Dates
+  preparedDate DateTime  @default(now())
+  validUntil   DateTime?
+
+  // Relations 
+//   projectId String?
+//   project   Project? @relation(fields: [projectId], references: [id])
+//   clientId  String?
+//   client    Client?  @relation(fields: [clientId], references: [id])
+
+//   organizationId String
+//   organization   Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+//   createdById    String
+//   createdBy      Member       @relation(fields: [createdById], references: [id], onDelete: Cascade)
+
+  createdAt         DateTime              @default(now())
+  updatedAt         DateTime              @updatedAt
+  estimateLineItems EstimateLineItem[]
+  estimateSections  EstimateSection[]
+  measurements      EstimateMeasurement[]
+  bids              Bid[]
+}
+
+model EstimateLineItem {
+  id             String       @id @default(cuid())
+//   organizationId String
+//   organization   Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+  estimateId     String
+  estimate       Estimate     @relation(fields: [estimateId], references: [id], onDelete: Cascade)
+
+  // For manual entries or overrides
+  description String
+  quantity    Decimal       @db.Decimal(12, 4)
+  unit        UnitOfMeasure
+  unitCost    Decimal       @db.Decimal(12, 4)
+
+  // Measurement-based quantity calculation
+  quantityFormula String? // Mathematical formula using measurement references
+  useFormula      Boolean @default(false)
+
+  totalCost Decimal @default(0) @db.Decimal(12, 2)
+  markup    Decimal @default(0) @db.Decimal(5, 2)
+  total     Decimal @db.Decimal(12, 2)
+
+  taxable   Boolean          @default(true)
+  sortOrder Int              @default(0)
+  sectionId String?
+  section   EstimateSection? @relation(fields: [sectionId], references: [id])
+  costType  CostType         @default(LABOR)
+
+  estimateMeasurements EstimateMeasurement[]
+
+  createdAt          DateTime             @default(now())
+  updatedAt          DateTime             @updatedAt
+  BidLineItemMapping BidLineItemMapping[]
+}
+
+model EstimateSection {
+  id        String @id @default(cuid())
+  name      String
+  sortOrder Int    @default(0)
+
+  estimateId String
+  estimate   Estimate @relation(fields: [estimateId], references: [id], onDelete: Cascade)
+
+//   organizationId String
+//   organization   Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+
+  lineItems EstimateLineItem[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model EstimateMeasurement {
+  id          String        @id @default(cuid())
+  name        String
+  description String?
+  value       Decimal       @db.Decimal(12, 4)
+  unit        UnitOfMeasure
+  sortOrder   Int           @default(0)
+
+  estimateId String
+  estimate   Estimate @relation(fields: [estimateId], references: [id], onDelete: Cascade)
+
+  // Measurement-based quantity calculation
+  quantityFormula String? // Mathematical formula using measurement references
+  useFormula      Boolean @default(false)
+
+  childMeasurements  EstimateMeasurement[] @relation("ReferencedMeasurements")
+  parentMeasurements EstimateMeasurement[] @relation("ReferencedMeasurements")
+
+//   organizationId String
+//   organization   Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+//   createdById    String
+//   createdBy      Member       @relation(fields: [createdById], references: [id], onDelete: Cascade)
+
+  estimateLineItems EstimateLineItem[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([estimateId, name])
+}
+
+
+// ==================== BIDS ====================
+
+enum BidStatus {
+    DRAFT
+    SUBMITTED
+    WON
+    LOST
+    WITHDRAWN
+    EXPIRED
+}
+
+model Bid {
+    id         String   @id @default(cuid())
+    number     String?
+    estimateId String
+    estimate   Estimate @relation(fields: [estimateId], references: [id])
+
+    // projectId String?
+    // project   Project? @relation(fields: [projectId], references: [id])
+    // clientId  String?
+    // client    Client?  @relation(fields: [clientId], references: [id])
+
+    // organizationId String
+    // organization   Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+
+    status        BidStatus @default(DRAFT)
+    submittedDate DateTime?
+    dueDate       DateTime?
+
+    // Bid-specific totals (may differ from estimate)
+    subtotal  Decimal @db.Decimal(12, 2)
+    taxAmount Decimal @default(0) @db.Decimal(12, 2)
+    total     Decimal @db.Decimal(12, 2)
+
+    // Competition tracking
+    competitorCount Int?
+    winProbability  Decimal? @db.Decimal(5, 2)
+
+    scopeOfWork String?
+    notes       String?
+    terms       String?
+
+    createdAt   DateTime @default(now())
+    updatedAt   DateTime @updatedAt
+    // createdById String?
+    // createdBy   Member?  @relation(fields: [createdById], references: [id])
+
+    lineItems BidLineItem[]
+    //   subcontractorQuotes SubcontractorQuote[]
+
+    // @@index([number])
+    @@index([status])
+    // @@index([clientId])
+    // @@index([projectId])
+}
+
+enum BidLineItemDisplayType {
+    QUANTITY_UNIT_PRICE
+    QUANTITY_TOTAL
+    TOTAL_PRICE
+}
+
+model BidLineItem {
+    id             String       @id @default(cuid())
+    bidId          String
+    bid            Bid          @relation(fields: [bidId], references: [id], onDelete: Cascade)
+    // organizationId String
+    // organization   Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+
+    displayType BidLineItemDisplayType @default(TOTAL_PRICE)
+
+    description String
+    quantity    Decimal       @db.Decimal(12, 4)
+    unit        UnitOfMeasure
+    unitPrice   Decimal       @db.Decimal(12, 4)
+    total       Decimal       @db.Decimal(12, 2)
+
+    taxable   Boolean @default(true)
+    sortOrder Int     @default(0)
+
+    notes     String?
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+
+    estimateMappings BidLineItemMapping[]
+
+    @@index([bidId])
+}
+
+// Mapping table to track which estimate items went into which bid items
+model BidLineItemMapping {
+    id                 String           @id @default(cuid())
+    bidLineItemId      String
+    bidLineItem        BidLineItem      @relation(fields: [bidLineItemId], references: [id], onDelete: Cascade)
+    estimateLineItemId String
+    estimateLineItem   EstimateLineItem @relation(fields: [estimateLineItemId], references: [id])
+
+    @@unique([bidLineItemId, estimateLineItemId])
+}

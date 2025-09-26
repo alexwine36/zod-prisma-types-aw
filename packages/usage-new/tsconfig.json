@@ -33,5 +33,6 @@
 		"useUnknownInCatchVariables": true,
 		"types": ["vitest/globals"]
 	},
-	"include": ["prisma/generated/**/*.ts", "src/**/*.ts"]
+	"include": ["**/*.ts", "**/*.tsx"],
+	"exclude": ["node_modules"]
 }

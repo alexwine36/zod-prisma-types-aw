@@ -31,20 +31,20 @@ export const DecimalListSchema = z
 		{ message: "Must be a Decimal" },
 	);
 
-const _transformDecimal = (value: any) => {
-	if (value instanceof Prisma.Decimal) return value;
-	if (typeof value === "number") return value;
-	if (typeof value === "string") return value;
-	if (
-		typeof value === "object" &&
-		"d" in value &&
-		"e" in value &&
-		"s" in value &&
-		"toFixed" in value
-	)
-		return value;
-	// return new Prisma.Decimal(value.toString());
-};
+// const _transformDecimal = (value: any) => {
+// 	if (value instanceof Prisma.Decimal) return value;
+// 	if (typeof value === "number") return value;
+// 	if (typeof value === "string") return value;
+// 	if (
+// 		typeof value === "object" &&
+// 		"d" in value &&
+// 		"e" in value &&
+// 		"s" in value &&
+// 		"toFixed" in value
+// 	)
+// 		return value;
+// 	// return new Prisma.Decimal(value.toString());
+// };
 
 export const DecimalSchema = z
 	.union([

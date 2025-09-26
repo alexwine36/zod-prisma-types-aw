@@ -20,8 +20,8 @@ import { getServer } from "./trpc/server";
 ///////////////////////////////////////
 // JSON SCHEMA REFINED
 ///////////////////////////////////////
-const adapter = new PrismaPg({ connectionString: process.env.DATABASE_URL });
-const _prismaClient = new PrismaClient({ adapter });
+const adapter = new PrismaPg({ connectionString: process.env["DATABASE_URL"] });
+new PrismaClient({ adapter });
 
 ///////////////////////////////////////
 // SETUP
@@ -158,7 +158,7 @@ it("should throw when compared types are wrong", async () => {
 	const b: JsonModel = a;
 	const c: JsonModelPrisma = b;
 
-	const _aParsed = JsonModelSchema.parse(a);
+	JsonModelSchema.parse(a);
 
 	expect(c).toBe(a);
 });
@@ -168,7 +168,7 @@ it("should throw when compared types are wrong", async () => {
 	const b: JsonModel = a;
 	const c: JsonModelPrisma = b;
 
-	const _aParsed = JsonModelSchema.parse(a);
+	JsonModelSchema.parse(a);
 
 	expect(c).toBe(a);
 });
