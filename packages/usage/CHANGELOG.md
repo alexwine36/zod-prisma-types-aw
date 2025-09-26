@@ -1,5 +1,12 @@
 # usage
 
+## 1.2.1
+
+### Patch Changes
+
+- Updated dependencies [6b180d0]
+  - zod-prisma-types-aw@3.6.0
+
 ## 1.2.0
 
 ### Minor Changes
