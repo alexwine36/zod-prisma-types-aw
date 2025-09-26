@@ -226,7 +226,7 @@ it("should be able to use string as input in DecimalSchema", () => {
 
 it("should not be able to use an invalid string as input in DecimalSchema", () => {
 	try {
-		const _parsedDecimal = DecimalModelCreateInputSchema.parse({
+		DecimalModelCreateInputSchema.parse({
 			decimal: "4.321e+4g",
 		});
 	} catch (error) {
