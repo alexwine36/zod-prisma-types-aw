@@ -31,7 +31,10 @@
 		"noUnusedParameters": true,
 		"useDefineForClassFields": true,
 		"useUnknownInCatchVariables": true,
-		"types": ["vitest/globals"]
+		"types": ["vitest/globals"],
+		"paths": {
+			"@/*": ["./*"]
+		}
 	},
 	"include": ["**/*.ts", "**/*.tsx"],
 	"exclude": ["node_modules"]

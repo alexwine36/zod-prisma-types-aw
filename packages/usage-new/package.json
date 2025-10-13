@@ -3,10 +3,11 @@
 	"version": "1.3.0",
 	"description": "",
 	"private": true,
-	"main": "index.js",
 	"scripts": {
 		"test": "vitest run --no-file-parallelism",
-		"gen:prisma": "prisma generate --schema prisma/schema",
+		"gen:prisma": "pnpm gen:prisma:1 && pnpm gen:prisma:2",
+		"gen:prisma:1": "prisma generate --schema prisma/schema",
+		"gen:prisma:2": "prisma generate --schema prisma-2/schema",
 		"run:dev": "ts-node-dev app/client.ts",
 		"tsc": "tsc",
 		"typecheck": "tsc --noEmit",

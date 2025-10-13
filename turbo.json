@@ -8,7 +8,8 @@
 		"//#lint": {},
 		"//#lint:ci": {},
 		"gen:prisma": {
-			"outputs": ["prisma/generated/**"],
+			"outputs": ["prisma/generated/**", "prisma-2/generated/**"],
+			"inputs": ["prisma/schema/**", "prisma-2/schema/**"],
 			"dependsOn": ["^build"]
 		},
 		"test": {
