@@ -1,5 +1,11 @@
 # zod-prisma-types-aw
 
+## 3.7.1
+
+### Patch Changes
+
+- 6568288: Update type of NullableJsonInput
+
 ## 3.7.0
 
 ### Minor Changes
