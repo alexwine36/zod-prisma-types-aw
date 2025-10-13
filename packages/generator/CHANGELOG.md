@@ -1,5 +1,11 @@
 # zod-prisma-types-aw
 
+## 3.7.0
+
+### Minor Changes
+
+- 3ef87dd: Update JSON handling in zod prisma generator
+
 ## 3.6.0
 
 ### Minor Changes
