@@ -28,7 +28,7 @@ export const writeTransformJsonNull = ({
 
 	const nullTypesTypeName = isPrismaClientGenerator
 		? "typeof objectEnumValues.instances"
-		: "Prisma.NullTypes";
+		: "typeof Prisma";
 
 	writer
 		.newLine()
